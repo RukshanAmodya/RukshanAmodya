@@ -56,20 +56,7 @@ I am a highly driven **Software Engineer & AI Innovator** focused on engineering
 
 ---
 
-### 📊 Performance & Git Activity
-
-<p align="center">
-  <!-- GitHub Streak Stats (Using stable alternative if primary fails) -->
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=RukshanAmodya&theme=dark&hide_border=true" alt="GitHub Streak Stats" width="49%" />
-  
-  <!-- Top Languages Card (Optimized layout) -->
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=RukshanAmodya&layout=compact&theme=dark&hide_border=true&langs_count=6" alt="Top Languages" width="49%" />
-</p>
-
-<p align="center">
-  <!-- General GitHub Stats Card (Fixed with icons and private contributions included) -->
-  <img src="https://github-readme-stats.vercel.app/api?username=RukshanAmodya&show_icons=true&theme=dark&hide_border=true&count_private=true&include_all_commits=true" alt="Rukshan's GitHub Stats" width="100%" />
-</p>
+### 📊 Git Activity
 
 <p align="center">
   <!-- Interactive Activity Graph -->
