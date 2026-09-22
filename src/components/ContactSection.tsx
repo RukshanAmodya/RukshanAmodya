@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Mail, Globe, Laptop, Send, Github, Linkedin, Twitter, Flame, Activity, Trophy, Star, GitFork, Check } from "lucide-react";
+import { Mail, Globe, Laptop, Send, Github, Linkedin, Twitter, Flame, Activity, Trophy, Star, GitFork, Check, Phone, PhoneCall, Loader2, AlertCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import LottiePlayer from "./LottiePlayer";
@@ -21,8 +21,10 @@ const greenLevels = [
 ];
 
 export default function ContactSection() {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
+  const [formData, setFormData] = useState({ name: "", email: "", phone: "", message: "" });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [sent, setSent] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   // Live GitHub Contributions State
   const [contributions, setContributions] = useState<ContributionDay[]>([]);
@@ -58,22 +60,25 @@ export default function ContactSection() {
               tempS = 0;
             }
           }
-          setLongestStreak(maxS || 5);
 
           for (let i = days.length - 1; i >= 0; i--) {
             if (days[i].count > 0) {
               curS++;
-            } else if (i === days.length - 1) {
-              continue;
             } else {
               break;
             }
           }
-          setCurrentStreak(curS || 1);
+
+          setLongestStreak(maxS > 0 ? maxS : 5);
+          setCurrentStreak(curS > 0 ? curS : 1);
         }
       })
-      .catch((err) => console.log("Using cached GitHub stats:", err))
-      .finally(() => setLoading(false));
+      .catch((err) => {
+        console.error("Error loading GitHub contributions:", err);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, []);
 
   // Format contributions into weeks (columns)
@@ -86,14 +91,39 @@ export default function ContactSection() {
 
   const months = ["Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name || !formData.email || !formData.message) return;
-    setSent(true);
-    setTimeout(() => {
-      setSent(false);
-      setFormData({ name: "", email: "", message: "" });
-    }, 3000);
+    if (!formData.name || !formData.email || !formData.message) {
+      setErrorMessage("Please fill out your name, email, and message.");
+      return;
+    }
+
+    setIsSubmitting(true);
+    setErrorMessage(null);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        setSent(true);
+        setFormData({ name: "", email: "", phone: "", message: "" });
+        setTimeout(() => {
+          setSent(false);
+        }, 5000);
+      } else {
+        setErrorMessage(data.error || "Failed to send message. Please try again.");
+      }
+    } catch (err: any) {
+      setErrorMessage("Network error occurred. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -137,13 +167,13 @@ export default function ContactSection() {
                 Let's Connect
               </h3>
               <p className="text-sm text-neutral-400 leading-relaxed max-w-md">
-                I'm always open for new opportunities, collaborations, or just a
+                I'm always open for new opportunities, collaborations, freelance projects, or just a
                 friendly conversation about tech and AI.
               </p>
             </div>
 
             {/* Contact Info Items */}
-            <div className="space-y-3.5 pt-2">
+            <div className="space-y-3 pt-2">
               {/* Email */}
               <a
                 href="mailto:rukshanamodya@gmail.com"
@@ -160,6 +190,22 @@ export default function ContactSection() {
                 </div>
               </a>
 
+              {/* Mobile / Phone Number */}
+              <a
+                href="tel:+94760000000"
+                className="flex items-center gap-3.5 p-3.5 rounded-2xl bg-[#0e0e0e] hover:bg-[#161616] border border-white/[0.08] hover:border-emerald-500/30 transition-all group max-w-md"
+              >
+                <div className="w-10 h-10 rounded-xl bg-neutral-900 border border-white/5 flex items-center justify-center text-emerald-400 shrink-0">
+                  <Phone className="w-4 h-4" />
+                </div>
+                <div>
+                  <p className="text-[11px] text-neutral-400 font-medium">Direct Call / WhatsApp</p>
+                  <p className="text-sm font-semibold text-white group-hover:text-emerald-400 transition-colors">
+                    +94 7X XXX XXXX
+                  </p>
+                </div>
+              </a>
+
               {/* Location */}
               <div className="flex items-center gap-3.5 p-3.5 rounded-2xl bg-[#0e0e0e] border border-white/[0.08] max-w-md">
                 <div className="w-10 h-10 rounded-xl bg-neutral-900 border border-white/5 flex items-center justify-center text-neutral-300 shrink-0">
@@ -167,7 +213,7 @@ export default function ContactSection() {
                 </div>
                 <div>
                   <p className="text-[11px] text-neutral-400 font-medium">Location</p>
-                  <p className="text-sm font-semibold text-white">Sri Lanka</p>
+                  <p className="text-sm font-semibold text-white">Western Province, Sri Lanka</p>
                 </div>
               </div>
 
@@ -191,7 +237,7 @@ export default function ContactSection() {
             </div>
 
             {/* Social Buttons Row */}
-            <div className="flex items-center gap-3 pt-3">
+            <div className="flex items-center gap-3 pt-2">
               <a
                 href="https://t.me/RukshanAmodya"
                 target="_blank"
@@ -250,51 +296,86 @@ export default function ContactSection() {
             >
               <div>
                 <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
-                  Name
+                  Name <span className="text-red-400">*</span>
                 </label>
                 <input
                   type="text"
                   required
-                  placeholder="Your name"
+                  placeholder="Your full name"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   className="w-full bg-[#121212] border border-neutral-800/90 focus:border-white/30 rounded-xl px-4 py-3 text-sm text-white placeholder-neutral-500 outline-none transition-colors"
                 />
               </div>
 
-              <div>
-                <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  required
-                  placeholder="your.email@example.com"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full bg-[#121212] border border-neutral-800/90 focus:border-white/30 rounded-xl px-4 py-3 text-sm text-white placeholder-neutral-500 outline-none transition-colors"
-                />
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
+                    Email <span className="text-red-400">*</span>
+                  </label>
+                  <input
+                    type="email"
+                    required
+                    placeholder="your.email@example.com"
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    className="w-full bg-[#121212] border border-neutral-800/90 focus:border-white/30 rounded-xl px-4 py-3 text-sm text-white placeholder-neutral-500 outline-none transition-colors"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
+                    Mobile / Phone Number
+                  </label>
+                  <input
+                    type="tel"
+                    placeholder="+94 7X XXX XXXX"
+                    value={formData.phone}
+                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    className="w-full bg-[#121212] border border-neutral-800/90 focus:border-white/30 rounded-xl px-4 py-3 text-sm text-white placeholder-neutral-500 outline-none transition-colors"
+                  />
+                </div>
               </div>
 
               <div>
                 <label className="block text-xs font-semibold text-neutral-300 mb-1.5">
-                  Message
+                  Message <span className="text-red-400">*</span>
                 </label>
                 <textarea
                   rows={4}
                   required
-                  placeholder="Your message..."
+                  placeholder="Tell me about your project, idea, or inquiry..."
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   className="w-full bg-[#121212] border border-neutral-800/90 focus:border-white/30 rounded-xl px-4 py-3 text-sm text-white placeholder-neutral-500 outline-none transition-colors resize-none"
                 />
               </div>
 
+              {errorMessage && (
+                <div className="flex items-center gap-2 p-3 rounded-xl bg-red-500/10 border border-red-500/20 text-xs text-red-400">
+                  <AlertCircle className="w-4 h-4 shrink-0" />
+                  <span>{errorMessage}</span>
+                </div>
+              )}
+
+              {sent && (
+                <div className="flex items-center gap-2 p-3 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-xs text-emerald-400">
+                  <Check className="w-4 h-4 shrink-0" />
+                  <span>Thank you! Your message has been sent successfully. I will get back to you soon.</span>
+                </div>
+              )}
+
               <button
                 type="submit"
-                className="w-full py-3.5 bg-white text-black font-semibold rounded-xl hover:bg-neutral-200 transition-all hover:scale-[1.01] active:scale-[0.99] text-sm shadow-[0_0_20px_rgba(255,255,255,0.15)] flex items-center justify-center gap-2"
+                disabled={isSubmitting}
+                className="w-full py-3.5 bg-white text-black font-semibold rounded-xl hover:bg-neutral-200 transition-all hover:scale-[1.01] active:scale-[0.99] text-sm shadow-[0_0_20px_rgba(255,255,255,0.15)] flex items-center justify-center gap-2 disabled:opacity-60 disabled:pointer-events-none"
               >
-                {sent ? (
+                {isSubmitting ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin text-black" />
+                    <span>Sending message...</span>
+                  </>
+                ) : sent ? (
                   <>
                     <Check className="w-4 h-4 text-emerald-600" />
                     <span>Message Sent!</span>
