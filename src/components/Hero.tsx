@@ -34,7 +34,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-4xl sm:text-6xl md:text-7xl font-extrabold text-white tracking-tight mb-2 sm:mb-3"
           >
-            Thejan GO
+            Rukshan Amodya
           </motion.h1>
 
           <motion.p

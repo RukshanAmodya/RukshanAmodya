@@ -61,7 +61,7 @@ export default function Navbar() {
             alt="logo"
             className="w-5 h-5 sm:w-6 sm:h-6 object-contain rounded-full"
           />
-          <span className="text-xs sm:text-sm">thejan.dev</span>
+          <span className="text-xs sm:text-sm font-semibold tracking-tight">amodya.dev</span>
         </Link>
 
         {/* Desktop Links */}

@@ -2,11 +2,11 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Thejan GO | Full-Stack Developer & Gen AI Enthusiast",
+  title: "Rukshan Amodya | Full-Stack Developer & Gen AI Enthusiast",
   description:
-    "Founder of CodexSL and Co-Founder of elix.lk, building Telegram bots, mini apps, and modern web solutions.",
+    "Portfolio of Rukshan Amodya - Full-Stack Developer and Gen AI Enthusiast building modern web applications, digital products, and innovative solutions.",
   icons: {
-    icon: "/favicon.svg",
+    icon: "/logo.webp",
   },
 };
 

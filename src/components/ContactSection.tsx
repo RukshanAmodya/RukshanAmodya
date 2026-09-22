@@ -109,7 +109,7 @@ export default function ContactSection() {
             <div className="space-y-3.5 pt-2">
               {/* Email */}
               <a
-                href="mailto:thejan64go@gmail.com"
+                href="mailto:rukshanamodya@gmail.com"
                 className="flex items-center gap-3.5 p-3.5 rounded-2xl bg-[#0e0e0e] hover:bg-[#161616] border border-white/[0.08] hover:border-white/[0.2] transition-all group max-w-md"
               >
                 <div className="w-10 h-10 rounded-xl bg-neutral-900 border border-white/5 flex items-center justify-center text-neutral-300 group-hover:text-white shrink-0">
@@ -118,7 +118,7 @@ export default function ContactSection() {
                 <div>
                   <p className="text-[11px] text-neutral-400 font-medium">Email</p>
                   <p className="text-sm font-semibold text-white group-hover:text-cyan-400 transition-colors">
-                    thejan64go@gmail.com
+                    rukshanamodya@gmail.com
                   </p>
                 </div>
               </a>
@@ -136,7 +136,7 @@ export default function ContactSection() {
 
               {/* Portfolio */}
               <a
-                href="https://thejan.dev"
+                href="https://amodya.dev"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-3.5 p-3.5 rounded-2xl bg-[#0e0e0e] hover:bg-[#161616] border border-white/[0.08] hover:border-white/[0.2] transition-all group max-w-md"
@@ -147,7 +147,7 @@ export default function ContactSection() {
                 <div>
                   <p className="text-[11px] text-neutral-400 font-medium">Portfolio</p>
                   <p className="text-sm font-semibold text-white group-hover:text-cyan-400 transition-colors">
-                    thejan.dev
+                    amodya.dev
                   </p>
                 </div>
               </a>
@@ -156,7 +156,7 @@ export default function ContactSection() {
             {/* Social Buttons Row */}
             <div className="flex items-center gap-3 pt-3">
               <a
-                href="https://t.me/Thejan_GO"
+                href="https://t.me/RukshanAmodya"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-11 h-11 rounded-xl bg-[#0e0e0e] hover:bg-neutral-800 border border-white/[0.08] hover:border-sky-500/50 flex items-center justify-center text-neutral-300 hover:text-sky-400 transition-all hover:scale-105 shadow-md"
@@ -165,7 +165,7 @@ export default function ContactSection() {
                 <Send className="w-4 h-4" />
               </a>
               <a
-                href="https://github.com/thejan64go"
+                href="https://github.com/RukshanAmodya"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-11 h-11 rounded-xl bg-[#0e0e0e] hover:bg-neutral-800 border border-white/[0.08] hover:border-white/30 flex items-center justify-center text-neutral-300 hover:text-white transition-all hover:scale-105 shadow-md"
@@ -407,13 +407,13 @@ export default function ContactSection() {
             <Link href="#home" className="flex items-center gap-2">
               <img
                 src="/logo.webp"
-                alt="Thejan"
+                alt="Rukshan"
                 className="w-6 h-6 object-contain rounded-full"
               />
-              <span className="font-bold text-white text-base tracking-tight">Thejan</span>
+              <span className="font-bold text-white text-base tracking-tight">Rukshan</span>
             </Link>
             <p className="text-xs text-neutral-500 leading-relaxed max-w-[190px]">
-              © copyright Thejan 2026. All rights reserved.
+              © copyright Rukshan 2026. All rights reserved.
             </p>
           </div>
 
@@ -455,7 +455,7 @@ export default function ContactSection() {
             <ul className="space-y-2 text-xs text-neutral-400">
               <li>
                 <a
-                  href="https://t.me/Thejan_GO"
+                  href="https://t.me/RukshanAmodya"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-white transition-colors"
@@ -465,7 +465,7 @@ export default function ContactSection() {
               </li>
               <li>
                 <a
-                  href="https://github.com/thejan64go"
+                  href="https://github.com/RukshanAmodya"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-white transition-colors"
@@ -549,7 +549,7 @@ export default function ContactSection() {
             <ul className="space-y-2 text-xs text-neutral-400">
               <li>
                 <a
-                  href="mailto:thejan64go@gmail.com"
+                  href="mailto:rukshanamodya@gmail.com"
                   className="hover:text-white transition-colors"
                 >
                   Email
@@ -557,7 +557,7 @@ export default function ContactSection() {
               </li>
               <li>
                 <a
-                  href="https://thejan.dev"
+                  href="https://amodya.dev"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:text-white transition-colors"
@@ -574,10 +574,10 @@ export default function ContactSection() {
           </div>
         </div>
 
-        {/* Huge Bottom Watermark Title */}
+        {/* Huge Bottom Watermark Title: RUKSHAN AMODYA */}
         <div className="w-full overflow-hidden select-none pointer-events-none mt-16 sm:mt-24 pb-0 text-center">
-          <h1 className="font-black text-6xl sm:text-8xl md:text-9xl lg:text-[13rem] xl:text-[15rem] tracking-tighter text-neutral-900/60 uppercase leading-none select-none">
-            THEJAN GO
+          <h1 className="font-black text-5xl sm:text-7xl md:text-9xl lg:text-[11rem] xl:text-[13rem] tracking-tighter text-neutral-900/60 uppercase leading-none select-none">
+            RUKSHAN AMODYA
           </h1>
         </div>
       </div>
