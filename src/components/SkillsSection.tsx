@@ -43,19 +43,22 @@ export const row2Skills: SkillItem[] = [
 
 export function SkillCard({ skill }: { skill: SkillItem }) {
   return (
-    <div className="flex items-center gap-3.5 bg-[#0e0e0e]/90 hover:bg-[#181818] border border-white/[0.08] hover:border-white/[0.2] rounded-2xl px-5 py-3.5 shrink-0 transition-all duration-300 hover:scale-[1.03] group shadow-[0_4px_24px_rgba(0,0,0,0.4)] backdrop-blur-sm min-w-[200px]">
-      <div className="w-10 h-10 rounded-xl bg-neutral-900 border border-white/5 flex items-center justify-center p-2 shrink-0 group-hover:border-white/15 transition-colors">
+    <div className="flex flex-col justify-between w-[150px] sm:w-[162px] h-[92px] sm:h-[96px] p-3.5 bg-[#0e0e0e]/95 hover:bg-[#181818] border border-white/[0.08] hover:border-white/[0.22] rounded-2xl shrink-0 transition-all duration-300 hover:scale-[1.03] group shadow-[0_4px_24px_rgba(0,0,0,0.5)] select-none">
+      {/* Icon */}
+      <div className="w-7 h-7 flex items-center justify-center">
         <img
           src={skill.icon}
           alt={skill.name}
-          className="w-full h-full object-contain filter group-hover:brightness-110 transition-all"
+          className="w-6 h-6 object-contain filter group-hover:brightness-110 transition-all"
         />
       </div>
-      <div className="text-left select-none">
-        <h4 className="text-sm font-semibold text-neutral-100 group-hover:text-white transition-colors whitespace-nowrap">
+
+      {/* Label and Subtitle */}
+      <div className="text-left">
+        <h4 className="text-[13px] font-semibold text-neutral-100 group-hover:text-white transition-colors truncate">
           {skill.name}
         </h4>
-        <p className="text-[11px] text-neutral-400 whitespace-nowrap">
+        <p className="text-[10px] text-neutral-400 font-normal truncate mt-0.5">
           {skill.desc}
         </p>
       </div>
@@ -65,7 +68,7 @@ export function SkillCard({ skill }: { skill: SkillItem }) {
 
 export default function SkillsSection() {
   return (
-    <div id="skills" className="relative w-full pt-16 pb-12">
+    <div id="skills" className="relative w-full pt-12 pb-8">
       {/* Header */}
       <div className="max-w-7xl mx-auto px-5 sm:px-8 mb-8">
         <motion.div
@@ -79,8 +82,8 @@ export default function SkillsSection() {
             <LottiePlayer src="/animations/skills.json" className="w-full h-full" />
           </div>
           <div>
-            <p className="text-xs font-bold uppercase tracking-widest text-neutral-400 mb-0.5">
-              What I work with
+            <p className="text-[11px] font-bold uppercase tracking-widest text-neutral-400 mb-0.5">
+              WHAT I WORK WITH
             </p>
             <h2 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
               Skills &amp; Expertise
@@ -91,11 +94,11 @@ export default function SkillsSection() {
 
       {/* Dual Opposite Marquee Rows */}
       <div className="relative w-full overflow-hidden flex flex-col gap-4">
-        {/* Fade edges */}
-        <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-28 bg-gradient-to-r from-black to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-28 bg-gradient-to-l from-black to-transparent z-10 pointer-events-none" />
+        {/* Deep Left & Right Shade Gradients */}
+        <div className="absolute left-0 top-0 bottom-0 w-24 sm:w-44 md:w-64 bg-gradient-to-r from-black via-black/85 to-transparent z-20 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-24 sm:w-44 md:w-64 bg-gradient-to-l from-black via-black/85 to-transparent z-20 pointer-events-none" />
 
-        {/* Row 1: Right to Left */}
+        {/* Row 1: Right to Left (Slower smooth speed) */}
         <div className="marquee-container w-full overflow-hidden flex">
           <div className="marquee-track flex gap-4 animate-marquee-left shrink-0 py-1">
             {[...row1Skills, ...row1Skills, ...row1Skills, ...row1Skills].map((skill, i) => (
@@ -104,7 +107,7 @@ export default function SkillsSection() {
           </div>
         </div>
 
-        {/* Row 2: Left to Right */}
+        {/* Row 2: Left to Right (Slower smooth speed) */}
         <div className="marquee-container w-full overflow-hidden flex">
           <div className="marquee-track flex gap-4 animate-marquee-right shrink-0 py-1">
             {[...row2Skills, ...row2Skills, ...row2Skills, ...row2Skills].map((skill, i) => (

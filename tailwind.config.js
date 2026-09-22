@@ -9,12 +9,12 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        background: '#0a0a0a',
+        background: '#000000',
         foreground: '#ededed',
       },
       animation: {
-        'marquee-left': 'marquee-left 35s linear infinite',
-        'marquee-right': 'marquee-right 35s linear infinite',
+        'marquee-left': 'marquee-left 65s linear infinite',
+        'marquee-right': 'marquee-right 65s linear infinite',
         'shimmer': 'shimmer 2s linear infinite',
         'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
       },
