@@ -697,6 +697,46 @@ export default function ContactSection() {
               </li>
               <li>
                 <a
+                  href="https://github.com/RukshanAmodya/Solarjade-Service-App"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors inline-block"
+                >
+                  Solarjade Service
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://github.com/RukshanAmodya/Moni"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors inline-block"
+                >
+                  Moni Finance
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://github.com/RukshanAmodya/PIRM-Solar-Care"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors inline-block"
+                >
+                  PIRM Solar Care
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://github.com/RukshanAmodya/Tale-Look"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors inline-block"
+                >
+                  Tale Look Creator
+                </a>
+              </li>
+              <li>
+                <a
                   href="https://github.com/RukshanAmodya/Aethera-V2"
                   target="_blank"
                   rel="noopener noreferrer"

@@ -39,6 +39,46 @@ const projects: Project[] = [
   },
   {
     id: 3,
+    title: "Solarjade Service App",
+    description: "Digital energy ecosystem for solar services, IoT hardware monitoring, automated deployment workflows, and field sync.",
+    tech: ["Flutter", "Dart", "IoT Hardware", "Cloud"],
+    image: "/assets/images/projects/solarjade.svg",
+    link: "https://github.com/RukshanAmodya/Solarjade-Service-App",
+    github: "https://github.com/RukshanAmodya/Solarjade-Service-App",
+    userCount: "2,000+",
+  },
+  {
+    id: 4,
+    title: "Moni Finance Manager",
+    description: "Production-ready, secure personal finance manager with real-time ledger, native QR camera shared budgeting, & savings challenges.",
+    tech: ["Flutter", "Finance", "QR Sync", "Security"],
+    image: "/assets/images/projects/moni.svg",
+    link: "https://github.com/RukshanAmodya/Moni",
+    github: "https://github.com/RukshanAmodya/Moni",
+    userCount: "5,000+",
+  },
+  {
+    id: 5,
+    title: "PIRM Solar Care",
+    description: "End-to-end solar management app with Solax API power tracking, multi-role portal, Cloudflare Worker proxy, and Supabase.",
+    tech: ["Flutter", "Solax API", "Supabase", "Cloudflare"],
+    image: "/assets/images/projects/solarcare.svg",
+    link: "https://github.com/RukshanAmodya/PIRM-Solar-Care",
+    github: "https://github.com/RukshanAmodya/PIRM-Solar-Care",
+    userCount: "3,500+",
+  },
+  {
+    id: 6,
+    title: "Tale Look Teleprompter",
+    description: "Creator & vlogger teleprompter mobile app with auto-scrolling script overlay right next to the camera lens for perfect eye contact.",
+    tech: ["Flutter", "Camera HUD", "Teleprompter", "Creator"],
+    image: "/assets/images/projects/talelook.svg",
+    link: "https://github.com/RukshanAmodya/Tale-Look",
+    github: "https://github.com/RukshanAmodya/Tale-Look",
+    userCount: "6,500+",
+  },
+  {
+    id: 7,
     title: "AP.LK Physics",
     description: "A/L Physics educational platform redesign with LearniX AI, Spline 3D interactions, exam marquees, and paper center network.",
     tech: ["Next.js", "React", "Spline 3D", "Tailwind"],
@@ -48,7 +88,7 @@ const projects: Project[] = [
     userCount: "8,500+",
   },
   {
-    id: 4,
+    id: 8,
     title: "devlk.com LMS",
     description: "Intelligent LMS for AI instruction featuring automated course paths, code playground, and student progress tracking.",
     tech: ["Next.js", "TypeScript", "Node.js", "AI Engine"],
@@ -58,7 +98,7 @@ const projects: Project[] = [
     userCount: "4,000+",
   },
   {
-    id: 5,
+    id: 9,
     title: "FlowBot Railway",
     description: "High-throughput Google Flow Image Generation backend API ready for 1-click deployment on Railway with async queues.",
     tech: ["Python", "FastAPI", "Railway", "AI API"],
@@ -68,7 +108,7 @@ const projects: Project[] = [
     userCount: "15,000+",
   },
   {
-    id: 6,
+    id: 10,
     title: "Kova Stream",
     description: "Sleek Korean Drama & Cinema streaming platform featuring instant HLS playback, subtitle sync, and episode indexing.",
     tech: ["React", "Next.js", "Tailwind", "HLS Stream"],
@@ -78,7 +118,7 @@ const projects: Project[] = [
     userCount: "12,000+",
   },
   {
-    id: 7,
+    id: 11,
     title: "Aethera V2",
     description: "Autonomous AI agent orchestration platform empowering teams to build, automate, and deploy self-hosted workflows.",
     tech: ["Python", "AI Agents", "FastAPI", "Docker"],
@@ -121,7 +161,7 @@ export default function ProjectsSection() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: idx * 0.07 }}
+              transition={{ duration: 0.4, delay: (idx % 4) * 0.07 }}
               className="group flex flex-col bg-[#0b0b0d] hover:bg-[#111114] border border-white/[0.08] hover:border-white/[0.22] rounded-2xl p-3.5 transition-all duration-300 hover:shadow-[0_12px_36px_rgba(0,0,0,0.7)]"
             >
               {/* Graphic / Image Box */}
