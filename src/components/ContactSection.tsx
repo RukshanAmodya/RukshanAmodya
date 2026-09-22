@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Mail, Globe, Laptop, Send, Github, Linkedin, Twitter, Flame, Activity, Trophy, Star, GitFork, Check, Phone, PhoneCall, Loader2, AlertCircle } from "lucide-react";
-import { motion } from "framer-motion";
+import { Mail, Globe, Laptop, Send, Github, Linkedin, Twitter, Flame, Activity, Trophy, Star, GitFork, Check, Phone, PhoneCall, Loader2, AlertCircle, ChevronDown, ChevronUp, ArrowUp, ExternalLink } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import LottiePlayer from "./LottiePlayer";
 import { assetUrl } from "@/lib/assets";
@@ -33,6 +33,28 @@ export default function ContactSection() {
   const [longestStreak, setLongestStreak] = useState(5);
   const [currentStreak, setCurrentStreak] = useState(1);
   const [loading, setLoading] = useState(true);
+
+  // Footer Expandable States for Mobile Friendliness
+  const [showAllProjects, setShowAllProjects] = useState(false);
+  const [showAllEdu, setShowAllEdu] = useState(false);
+
+  const featuredProjects = [
+    { name: "ArtimaX Flutter", url: "https://github.com/RukshanAmodya/ArtimaX-Flutter" },
+    { name: "Sleep Love", url: "https://github.com/RukshanAmodya/Sleep-Love" },
+    { name: "Solarjade Service", url: "https://github.com/RukshanAmodya/Solarjade-Service-App" },
+    { name: "Moni Finance", url: "https://github.com/RukshanAmodya/Moni" },
+  ];
+
+  const moreProjects = [
+    { name: "AP.LK Physics", url: "https://github.com/RukshanAmodya/Tutor" },
+    { name: "devlk.com LMS", url: "https://github.com/RukshanAmodya/devlk.com" },
+    { name: "PIRM Solar Care", url: "https://github.com/RukshanAmodya/PIRM-Solar-Care" },
+    { name: "BookBoo Stories", url: "https://github.com/RukshanAmodya/BookBoo" },
+    { name: "FlowBot Railway", url: "https://github.com/RukshanAmodya/FlowBot-Railway" },
+    { name: "Kova Stream", url: "https://github.com/RukshanAmodya/Kova" },
+    { name: "Tale Look Creator", url: "https://github.com/RukshanAmodya/Tale-Look" },
+    { name: "Aethera V2", url: "https://github.com/RukshanAmodya/Aethera-V2" },
+  ];
 
   useEffect(() => {
     // Fetch real contributions for RukshanAmodya
@@ -575,342 +597,327 @@ export default function ContactSection() {
         </motion.div>
 
         {/* Resend-Inspired Huge 3D Metallic Watermark */}
-        <div className="relative w-full overflow-hidden select-none pointer-events-none mt-20 sm:mt-28 pt-8 pb-4 text-center">
+        <div className="relative w-full overflow-hidden select-none pointer-events-none mt-16 sm:mt-24 pt-6 pb-2 text-center">
           {/* Subtle Ambient Top Glow */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-32 bg-white/[0.03] blur-3xl rounded-full pointer-events-none" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-3/4 h-24 sm:h-32 bg-white/[0.03] blur-3xl rounded-full pointer-events-none" />
 
           {/* Giant Metallic Embossed Wordmark */}
-          <h1 className="font-black text-6xl sm:text-8xl md:text-[10rem] lg:text-[13rem] xl:text-[15rem] tracking-tight leading-none uppercase select-none transition-all duration-700 bg-gradient-to-b from-white/40 via-neutral-400/20 to-neutral-900/10 bg-clip-text text-transparent drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)] border-b border-transparent">
+          <h1 className="font-black text-4xl sm:text-6xl md:text-8xl lg:text-[10rem] xl:text-[13rem] tracking-tight leading-none uppercase select-none transition-all duration-700 bg-gradient-to-b from-white/40 via-neutral-400/20 to-neutral-900/10 bg-clip-text text-transparent drop-shadow-[0_10px_20px_rgba(0,0,0,0.8)] border-b border-transparent">
             Rukshan
           </h1>
         </div>
 
-        {/* Resend-Style Modern Multi-Column Footer */}
-        <div className="pt-12 pb-12 border-t border-white/[0.08] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-8 text-left">
-          {/* Column 1: Info, Status Badge & Socials */}
-          <div className="space-y-5 sm:col-span-2 lg:col-span-1">
-            <div>
-              <Link href="#home" className="inline-flex items-center gap-2 mb-2">
+        {/* Multi-Column Modern Responsive Footer */}
+        <div className="pt-10 pb-8 border-t border-white/[0.08]">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-8 text-left">
+            {/* Column 1: Info, Status Badge & Socials */}
+            <div className="space-y-4 lg:col-span-4 pr-0 lg:pr-6">
+              <Link href="#home" className="inline-flex items-center gap-2.5">
                 <img
                   src={assetUrl("/logo.webp")}
                   alt="Rukshan"
-                  className="w-6 h-6 object-contain rounded-full"
+                  className="w-7 h-7 object-contain rounded-full ring-1 ring-white/10"
                 />
-                <span className="font-bold text-white text-base tracking-tight">amodya.dev</span>
+                <span className="font-bold text-white text-lg tracking-tight">amodya.dev</span>
               </Link>
-              <p className="text-xs text-neutral-400 leading-relaxed">
-                Western Province, Sri Lanka
+
+              <p className="text-xs text-neutral-400 leading-relaxed max-w-sm">
+                Full-Stack Software Engineer & AI Systems Developer crafting next-generation web & mobile applications.
               </p>
-              <p className="text-xs text-neutral-500 mt-0.5">
-                nmr.amodya@gmail.com
-              </p>
-            </div>
 
-            {/* "All systems normal" Status Pill */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.08] text-xs font-medium text-neutral-300">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-              </span>
-              <span>All systems normal</span>
-            </div>
+              {/* Contact info snippets */}
+              <div className="space-y-1 text-xs text-neutral-400 pt-1">
+                <p className="flex items-center gap-2">
+                  <span className="text-neutral-500">📍</span> Western Province, Sri Lanka
+                </p>
+                <p className="flex items-center gap-2">
+                  <span className="text-neutral-500">✉️</span> nmr.amodya@gmail.com
+                </p>
+                <p className="flex items-center gap-2">
+                  <span className="text-neutral-500">📞</span> +94 76 860 5501
+                </p>
+              </div>
 
-            {/* Social Links Minimal Icons */}
-            <div className="flex items-center gap-3 pt-1">
-              <a
-                href="https://x.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-8 h-8 rounded-lg bg-white/[0.04] hover:bg-white/[0.1] border border-white/[0.06] flex items-center justify-center text-neutral-400 hover:text-white transition-colors"
-                aria-label="Twitter / X"
-              >
-                <Twitter className="w-3.5 h-3.5" />
-              </a>
-              <a
-                href="https://github.com/RukshanAmodya"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-8 h-8 rounded-lg bg-white/[0.04] hover:bg-white/[0.1] border border-white/[0.06] flex items-center justify-center text-neutral-400 hover:text-white transition-colors"
-                aria-label="GitHub"
-              >
-                <Github className="w-3.5 h-3.5" />
-              </a>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-8 h-8 rounded-lg bg-white/[0.04] hover:bg-white/[0.1] border border-white/[0.06] flex items-center justify-center text-neutral-400 hover:text-white transition-colors"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="w-3.5 h-3.5" />
-              </a>
-              <a
-                href="https://t.me/RukshanAmodya"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-8 h-8 rounded-lg bg-white/[0.04] hover:bg-white/[0.1] border border-white/[0.06] flex items-center justify-center text-neutral-400 hover:text-sky-400 transition-colors"
-                aria-label="Telegram"
-              >
-                <Send className="w-3.5 h-3.5" />
-              </a>
-            </div>
+              {/* "All systems normal" Status Pill */}
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.08] text-xs font-medium text-neutral-300">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                </span>
+                <span>All systems normal • Available for work</span>
+              </div>
 
-            <p className="text-[11px] text-neutral-600 pt-2">
-              © {new Date().getFullYear()} Rukshan Amodya. All rights reserved.
-            </p>
-          </div>
-
-          {/* Column 2: Projects */}
-          <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-white mb-3.5">
-              Projects
-            </h4>
-            <ul className="space-y-2 text-xs text-neutral-400">
-              <li>
-                <a
-                  href="https://github.com/RukshanAmodya/ArtimaX-Flutter"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-white transition-colors inline-block"
-                >
-                  ArtimaX Flutter
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://github.com/RukshanAmodya/Sleep-Love"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-white transition-colors inline-block"
-                >
-                  Sleep Love
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://github.com/RukshanAmodya/Tutor"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-white transition-colors inline-block"
-                >
-                  AP.LK Physics
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://github.com/RukshanAmodya/devlk.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-white transition-colors inline-block"
-                >
-                  devlk.com LMS
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://github.com/RukshanAmodya/FlowBot-Railway"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-white transition-colors inline-block"
-                >
-                  FlowBot Railway
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://github.com/RukshanAmodya/Kova"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-white transition-colors inline-block"
-                >
-                  Kova Streaming
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://github.com/RukshanAmodya/Solarjade-Service-App"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-white transition-colors inline-block"
-                >
-                  Solarjade Service
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://github.com/RukshanAmodya/Moni"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-white transition-colors inline-block"
-                >
-                  Moni Finance
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://github.com/RukshanAmodya/PIRM-Solar-Care"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-white transition-colors inline-block"
-                >
-                  PIRM Solar Care
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://github.com/RukshanAmodya/Tale-Look"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-white transition-colors inline-block"
-                >
-                  Tale Look Creator
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://github.com/RukshanAmodya/BookBoo"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-white transition-colors inline-block"
-                >
-                  BookBoo Stories
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://github.com/RukshanAmodya/Aethera-V2"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-white transition-colors inline-block"
-                >
-                  Aethera V2
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Column 3: Ventures & Edu */}
-          <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-white mb-3.5">
-              Ventures & Edu
-            </h4>
-            <ul className="space-y-2 text-xs text-neutral-400">
-              <li>
-                <span className="text-neutral-300 font-medium">Coding Divers</span>
-                <span className="text-[10px] text-neutral-500 block">Founder (2023)</span>
-              </li>
-              <li>
-                <span className="text-neutral-300 font-medium">Gravix</span>
-                <span className="text-[10px] text-neutral-500 block">Co-Founder (2024)</span>
-              </li>
-              <li>
-                <span className="text-neutral-300 font-medium">Questra</span>
-                <span className="text-[10px] text-neutral-500 block">Founder (2025)</span>
-              </li>
-              <li>
-                <span className="text-neutral-300 font-medium">iCET Institute</span>
-                <span className="text-[10px] text-neutral-500 block">Software Engineering</span>
-              </li>
-              <li>
-                <span className="text-neutral-300 font-medium">Univ. of Moratuwa</span>
-                <span className="text-[10px] text-neutral-500 block">Fullstack Dev</span>
-              </li>
-              <li>
-                <span className="text-neutral-300 font-medium">SITC Campus</span>
-                <span className="text-[10px] text-neutral-500 block">Cybersecurity & English</span>
-              </li>
-            </ul>
-          </div>
-
-          {/* Column 4: Navigation */}
-          <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-white mb-3.5">
-              Navigation
-            </h4>
-            <ul className="space-y-2 text-xs text-neutral-400">
-              <li>
-                <Link href="#home" className="hover:text-white transition-colors">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link href="#skills" className="hover:text-white transition-colors">
-                  Tech Stack
-                </Link>
-              </li>
-              <li>
-                <Link href="#projects" className="hover:text-white transition-colors">
-                  Featured Projects
-                </Link>
-              </li>
-              <li>
-                <Link href="#experience" className="hover:text-white transition-colors">
-                  Experience & Timeline
-                </Link>
-              </li>
-              <li>
-                <Link href="#contact" className="hover:text-white transition-colors">
-                  GitHub & Contact
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Column 5: Connect */}
-          <div>
-            <h4 className="text-xs font-bold uppercase tracking-wider text-white mb-3.5">
-              Connect
-            </h4>
-            <ul className="space-y-2 text-xs text-neutral-400">
-              <li>
-                <a
-                  href="mailto:nmr.amodya@gmail.com"
-                  className="hover:text-white transition-colors"
-                >
-                  Email
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://t.me/RukshanAmodya"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:text-white transition-colors"
-                >
-                  Telegram
-                </a>
-              </li>
-              <li>
+              {/* Social Links Minimal Icons */}
+              <div className="flex items-center gap-2.5 pt-1">
                 <a
                   href="https://github.com/RukshanAmodya"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-white transition-colors"
+                  className="w-8 h-8 rounded-lg bg-white/[0.04] hover:bg-white/[0.1] border border-white/[0.08] flex items-center justify-center text-neutral-400 hover:text-white transition-all hover:scale-105"
+                  aria-label="GitHub"
                 >
-                  GitHub
+                  <Github className="w-3.5 h-3.5" />
                 </a>
-              </li>
-              <li>
+                <a
+                  href="https://t.me/RukshanAmodya"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 rounded-lg bg-white/[0.04] hover:bg-white/[0.1] border border-white/[0.08] flex items-center justify-center text-neutral-400 hover:text-sky-400 transition-all hover:scale-105"
+                  aria-label="Telegram"
+                >
+                  <Send className="w-3.5 h-3.5" />
+                </a>
+                <a
+                  href="https://wa.me/94768605501"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 rounded-lg bg-white/[0.04] hover:bg-white/[0.1] border border-white/[0.08] flex items-center justify-center text-neutral-400 hover:text-emerald-400 transition-all hover:scale-105"
+                  aria-label="WhatsApp"
+                >
+                  <Phone className="w-3.5 h-3.5" />
+                </a>
                 <a
                   href="https://linkedin.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-white transition-colors"
+                  className="w-8 h-8 rounded-lg bg-white/[0.04] hover:bg-white/[0.1] border border-white/[0.08] flex items-center justify-center text-neutral-400 hover:text-blue-400 transition-all hover:scale-105"
+                  aria-label="LinkedIn"
                 >
-                  LinkedIn
+                  <Linkedin className="w-3.5 h-3.5" />
                 </a>
-              </li>
-              <li>
                 <a
-                  href="https://amodya.dev"
+                  href="https://x.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hover:text-white transition-colors"
+                  className="w-8 h-8 rounded-lg bg-white/[0.04] hover:bg-white/[0.1] border border-white/[0.08] flex items-center justify-center text-neutral-400 hover:text-white transition-all hover:scale-105"
+                  aria-label="Twitter / X"
                 >
-                  amodya.dev
+                  <Twitter className="w-3.5 h-3.5" />
                 </a>
-              </li>
-            </ul>
+              </div>
+            </div>
+
+            {/* Links Subgrid: 2 columns on mobile/tablet, Spans 8 cols on desktop */}
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:col-span-8 gap-6 sm:gap-8">
+              {/* Column 1: Projects with See More Toggle */}
+              <div>
+                <h4 className="text-xs font-bold uppercase tracking-wider text-white mb-3 flex items-center gap-1.5">
+                  <span>Projects</span>
+                  <span className="text-[10px] font-semibold text-cyan-400 bg-cyan-500/10 px-1.5 py-0.5 rounded border border-cyan-500/20">
+                    12
+                  </span>
+                </h4>
+                <ul className="space-y-2 text-xs text-neutral-400">
+                  {featuredProjects.map((p) => (
+                    <li key={p.name}>
+                      <a
+                        href={p.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-white transition-colors inline-block hover:translate-x-0.5 transition-transform"
+                      >
+                        {p.name}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+
+                {/* Animated Expandable Projects */}
+                <AnimatePresence>
+                  {showAllProjects && (
+                    <motion.ul
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: "auto" }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.25 }}
+                      className="space-y-2 text-xs text-neutral-400 pt-2 overflow-hidden"
+                    >
+                      {moreProjects.map((p) => (
+                        <li key={p.name}>
+                          <a
+                            href={p.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:text-white transition-colors inline-block hover:translate-x-0.5 transition-transform"
+                          >
+                            {p.name}
+                          </a>
+                        </li>
+                      ))}
+                    </motion.ul>
+                  )}
+                </AnimatePresence>
+
+                <button
+                  type="button"
+                  onClick={() => setShowAllProjects(!showAllProjects)}
+                  className="mt-3 text-[11px] font-semibold text-cyan-400 hover:text-cyan-300 flex items-center gap-1 transition-colors py-1 cursor-pointer"
+                >
+                  <span>{showAllProjects ? "Show less" : `+ ${moreProjects.length} more`}</span>
+                  {showAllProjects ? (
+                    <ChevronUp className="w-3 h-3" />
+                  ) : (
+                    <ChevronDown className="w-3 h-3" />
+                  )}
+                </button>
+              </div>
+
+              {/* Column 2: Ventures & Edu */}
+              <div>
+                <h4 className="text-xs font-bold uppercase tracking-wider text-white mb-3">
+                  Ventures & Edu
+                </h4>
+                <ul className="space-y-2.5 text-xs text-neutral-400">
+                  <li>
+                    <span className="text-neutral-200 font-medium block">Questra</span>
+                    <span className="text-[10px] text-neutral-500">Founder • 2025</span>
+                  </li>
+                  <li>
+                    <span className="text-neutral-200 font-medium block">Coding Divers</span>
+                    <span className="text-[10px] text-neutral-500">Founder • 2023</span>
+                  </li>
+                  <li>
+                    <span className="text-neutral-200 font-medium block">Gravix</span>
+                    <span className="text-[10px] text-neutral-500">Co-Founder • 2024</span>
+                  </li>
+                  <li>
+                    <span className="text-neutral-200 font-medium block">iCET Institute</span>
+                    <span className="text-[10px] text-neutral-500">Software Eng.</span>
+                  </li>
+                  <li>
+                    <span className="text-neutral-200 font-medium block">Univ. of Moratuwa</span>
+                    <span className="text-[10px] text-neutral-500">Fullstack Dev</span>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Column 3: Navigation */}
+              <div>
+                <h4 className="text-xs font-bold uppercase tracking-wider text-white mb-3">
+                  Navigation
+                </h4>
+                <ul className="space-y-2 text-xs text-neutral-400">
+                  <li>
+                    <Link href="#home" className="hover:text-white transition-colors block py-0.5">
+                      Home
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="#skills" className="hover:text-white transition-colors block py-0.5">
+                      Tech Stack
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="#projects" className="hover:text-white transition-colors block py-0.5">
+                      Featured Projects
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="#experience" className="hover:text-white transition-colors block py-0.5">
+                      Timeline & Exp
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="#contact" className="hover:text-white transition-colors block py-0.5">
+                      GitHub & Contact
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+
+              {/* Column 4: Connect */}
+              <div>
+                <h4 className="text-xs font-bold uppercase tracking-wider text-white mb-3">
+                  Connect
+                </h4>
+                <ul className="space-y-2 text-xs text-neutral-400">
+                  <li>
+                    <a
+                      href="mailto:nmr.amodya@gmail.com"
+                      className="hover:text-white transition-colors block py-0.5"
+                    >
+                      Email
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://wa.me/94768605501"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-emerald-400 transition-colors block py-0.5"
+                    >
+                      WhatsApp
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://t.me/RukshanAmodya"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-sky-400 transition-colors block py-0.5"
+                    >
+                      Telegram
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://github.com/RukshanAmodya"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-white transition-colors block py-0.5"
+                    >
+                      GitHub
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://linkedin.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-blue-400 transition-colors block py-0.5"
+                    >
+                      LinkedIn
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://amodya.dev"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-cyan-400 transition-colors block py-0.5"
+                    >
+                      amodya.dev
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          {/* Bottom Copyright and Back To Top Bar */}
+          <div className="mt-12 pt-6 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+            <p className="text-xs text-neutral-500">
+              © {new Date().getFullYear()}{" "}
+              <strong className="text-neutral-300 font-semibold">Rukshan Amodya</strong>. All rights reserved.
+            </p>
+
+            <div className="flex flex-wrap items-center justify-center gap-4">
+              <span className="text-[11px] text-neutral-500">
+                Crafted with Next.js 15 & Tailwind CSS
+              </span>
+              <button
+                type="button"
+                onClick={() => {
+                  if (typeof window !== "undefined") {
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }
+                }}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white/[0.04] hover:bg-white/[0.08] border border-white/[0.08] text-xs font-medium text-neutral-300 hover:text-white transition-colors cursor-pointer"
+              >
+                <span>Back to Top</span>
+                <ArrowUp className="w-3 h-3" />
+              </button>
+            </div>
           </div>
         </div>
       </div>
