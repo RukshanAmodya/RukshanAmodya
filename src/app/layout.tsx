@@ -61,11 +61,18 @@ export const metadata: Metadata = {
     siteName: "amodya.dev",
     images: [
       {
-        url: `${siteUrl}og-image.svg`,
+        url: `${siteUrl}og-image.png`,
         width: 1200,
         height: 630,
         alt: siteTitle,
-        type: "image/svg+xml",
+        type: "image/png",
+      },
+      {
+        url: `${siteUrl}og-image.jpg`,
+        width: 1200,
+        height: 630,
+        alt: siteTitle,
+        type: "image/jpeg",
       },
     ],
   },
@@ -74,7 +81,7 @@ export const metadata: Metadata = {
     title: siteTitle,
     description: siteDescription,
     creator: "@RukshanAmodya",
-    images: [`${siteUrl}og-image.svg`],
+    images: [`${siteUrl}og-image.png`],
   },
   robots: {
     index: true,
