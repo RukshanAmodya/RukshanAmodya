@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef } from "react";
-import { GraduationCap, ShieldCheck, Code, BookOpen, Award, Layers } from "lucide-react";
+import { GraduationCap, Briefcase, ShieldCheck, Code, BookOpen, Award, Layers, Rocket, Zap, Sparkles } from "lucide-react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import LottiePlayer from "./LottiePlayer";
 
@@ -9,32 +9,50 @@ interface Milestone {
   year: string;
   type: "edu" | "work";
   title: string;
-  org?: string;
+  org: string;
   badgeLabel: string;
   period: string;
   bullets: string[];
   tags: string[];
-  logo?: string;
   iconType?: string;
   flip: boolean; // false: Card Left, Details Right | true: Details Left, Card Right
 }
 
 const milestones: Milestone[] = [
+  // 1. 2023 - Education (Cybersecurity)
   {
     year: "2023",
     type: "edu",
     title: "Diploma in Cybersecurity",
-    org: "Information Security & Defense",
+    org: "Information Security & Threat Defense",
     badgeLabel: "EDUCATION",
     period: "Completed 2023",
     bullets: [
       "Focused on network security, threat analysis, and ethical defense strategies.",
-      "Practical experience in vulnerability assessments and system hardening.",
+      "Hands-on experience in vulnerability assessments and system hardening.",
     ],
     tags: ["Cybersecurity", "Network Security", "Ethical Hacking"],
     iconType: "shield",
     flip: false,
   },
+  // 2. 2023 - Work (Coding Divers)
+  {
+    year: "2023",
+    type: "work",
+    title: "Founder",
+    org: "Coding Divers",
+    badgeLabel: "WORK EXPERIENCE",
+    period: "2023 – Present",
+    bullets: [
+      "Founded Coding Divers, delivering tailored software & web solutions.",
+      "Leading engineering, technical strategy, and client product development.",
+      "Spearheading digital transformation initiatives and developer community outreach.",
+    ],
+    tags: ["Coding Divers", "Startup", "Web Solutions"],
+    iconType: "rocket",
+    flip: true,
+  },
+  // 3. 2024 - Education (Fullstack)
   {
     year: "2024",
     type: "edu",
@@ -43,13 +61,31 @@ const milestones: Milestone[] = [
     badgeLabel: "EDUCATION",
     period: "Completed 2024",
     bullets: [
-      "Mastered modern full-stack web architectures and RESTful API integrations.",
-      "Engineered scalable web applications using React, Node.js, and cloud databases.",
+      "Mastered modern full-stack web architectures and RESTful API design.",
+      "Engineered scalable applications using React, Next.js, Node.js, and cloud databases.",
     ],
-    tags: ["Fullstack", "Web Development", "MERN Stack"],
+    tags: ["Fullstack", "React", "Node.js", "MERN Stack"],
     iconType: "code",
+    flip: false,
+  },
+  // 4. 2024 - Work (Gravix)
+  {
+    year: "2024",
+    type: "work",
+    title: "Co-Founder",
+    org: "Gravix",
+    badgeLabel: "WORK EXPERIENCE",
+    period: "2024 – Present",
+    bullets: [
+      "Co-founded Gravix, focusing on cutting-edge digital products and AI tooling.",
+      "Architecting high-performance backend pipelines and client interfaces.",
+      "Managing product lifecycles, user experience, and technical roadmap.",
+    ],
+    tags: ["Gravix", "Co-Founder", "AI Solutions", "Startup"],
+    iconType: "zap",
     flip: true,
   },
+  // 5. 2025 - Education (O/L)
   {
     year: "2025",
     type: "edu",
@@ -58,28 +94,47 @@ const milestones: Milestone[] = [
     badgeLabel: "EDUCATION",
     period: "Completed 2025",
     bullets: [
-      "Completed GCE Ordinary Level national examinations.",
-      "Achieved strong foundation in Mathematics, Science, and English streams.",
+      "Completed GCE Ordinary Level national examination curriculum.",
+      "Solid academic foundation in Mathematics, Science, and English.",
     ],
     tags: ["GCE O/L", "Secondary Education"],
     iconType: "award",
     flip: false,
   },
+  // 6. 2025 - Work (Questra)
+  {
+    year: "2025",
+    type: "work",
+    title: "Founder",
+    org: "Questra",
+    badgeLabel: "WORK EXPERIENCE",
+    period: "2025 – Present",
+    bullets: [
+      "Founded Questra, developing innovative automation tools and bot infrastructure.",
+      "Directing full engineering lifecycle, system scalability, and cloud deployments.",
+      "Delivering modern web products and interactive micro-services.",
+    ],
+    tags: ["Questra", "Founder", "Automation", "Cloud"],
+    iconType: "sparkles",
+    flip: true,
+  },
+  // 7. 2026 - Education (Diploma in English)
   {
     year: "2026",
     type: "edu",
     title: "Diploma in English",
-    org: "Professional & Technical Communication",
+    org: "Professional Communication & Language",
     badgeLabel: "EDUCATION",
     period: "2026 – Present",
     bullets: [
-      "Advanced professional English proficiency, technical writing, and communication.",
-      "Enhanced presentation, documentation, and interpersonal collaboration skills.",
+      "Advanced professional English proficiency, technical documentation, and writing.",
+      "Strengthened international client communication, presentation, and collaboration.",
     ],
-    tags: ["English", "Communication", "Professional Skills"],
+    tags: ["English", "Professional Communication", "Soft Skills"],
     iconType: "book",
-    flip: true,
+    flip: false,
   },
+  // 8. 2026 - Education (Diploma in Software Engineering)
   {
     year: "2026",
     type: "edu",
@@ -88,16 +143,16 @@ const milestones: Milestone[] = [
     badgeLabel: "EDUCATION",
     period: "2026 – Present",
     bullets: [
-      "Comprehensive study of software design patterns, data structures, and algorithms.",
-      "End-to-end application lifecycle management, agile methodologies, and clean code practices.",
+      "Comprehensive study of software design patterns, system architecture, and algorithms.",
+      "End-to-end agile software lifecycle management and enterprise clean code practices.",
     ],
     tags: ["Software Engineering", "System Design", "Architecture"],
     iconType: "layers",
-    flip: false,
+    flip: true,
   },
 ];
 
-function getIcon(iconType?: string) {
+function getIcon(iconType?: string, type?: "edu" | "work") {
   switch (iconType) {
     case "shield":
       return <ShieldCheck className="w-3.5 h-3.5 text-blue-400" />;
@@ -109,8 +164,18 @@ function getIcon(iconType?: string) {
       return <BookOpen className="w-3.5 h-3.5 text-emerald-400" />;
     case "layers":
       return <Layers className="w-3.5 h-3.5 text-purple-400" />;
+    case "rocket":
+      return <Rocket className="w-3.5 h-3.5 text-orange-400" />;
+    case "zap":
+      return <Zap className="w-3.5 h-3.5 text-yellow-400" />;
+    case "sparkles":
+      return <Sparkles className="w-3.5 h-3.5 text-pink-400" />;
     default:
-      return <GraduationCap className="w-3.5 h-3.5 text-neutral-300" />;
+      return type === "work" ? (
+        <Briefcase className="w-3.5 h-3.5 text-blue-400" />
+      ) : (
+        <GraduationCap className="w-3.5 h-3.5 text-neutral-300" />
+      );
   }
 }
 
@@ -120,7 +185,7 @@ function TitleCard({ item }: { item: Milestone }) {
       {/* Badge Header */}
       <div className="flex items-center gap-2.5 mb-4">
         <div className="w-6 h-6 rounded-md bg-white/[0.06] border border-white/10 flex items-center justify-center shrink-0">
-          {getIcon(item.iconType)}
+          {getIcon(item.iconType, item.type)}
         </div>
         <span className="text-[11px] font-bold tracking-widest text-neutral-400 uppercase">
           {item.badgeLabel}
@@ -212,7 +277,7 @@ export default function ExperienceSection() {
                 MY JOURNEY
               </p>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">
-                Education &amp; Qualifications
+                Education &amp; Experience
               </h2>
             </div>
           </motion.div>
