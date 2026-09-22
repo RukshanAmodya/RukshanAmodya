@@ -2,9 +2,8 @@
 
 import React, { useState, useEffect, useCallback, useRef } from "react";
 
-interface CellState {
-  opacity: number; // 0 to 1
-  timestamp: number;
+interface ActiveCell {
+  intensity: number; // 0 to 1
 }
 
 export default function HeroGrid() {
@@ -14,7 +13,7 @@ export default function HeroGrid() {
 
   useEffect(() => {
     const calculateGrid = () => {
-      const cellSize = window.innerWidth < 640 ? 56 : 68; // larger prominent grid squares
+      const cellSize = window.innerWidth < 640 ? 56 : 68;
       const width = window.innerWidth;
       const height = window.innerHeight * 1.35;
       const cols = Math.ceil(width / cellSize) + 1;
@@ -29,34 +28,41 @@ export default function HeroGrid() {
 
   const triggerRingRipple = useCallback((clickRow: number, clickCol: number) => {
     const { rows, cols } = gridSize;
-    const maxRadius = Math.max(rows, cols) * 1.2;
+    // Radius limited so the wave fades out midway instead of spreading forever
+    const maxRadius = 7.5;
     const rippleId = `${Date.now()}-${Math.random()}`;
     timerRefs.current[rippleId] = [];
 
-    // Calculate waves for all cells in the grid so the ring travels across the whole hero
-    for (let r = 0; r < rows; r++) {
-      for (let c = 0; c < cols; c++) {
+    const minR = Math.max(0, Math.floor(clickRow - maxRadius));
+    const maxR = Math.min(rows - 1, Math.ceil(clickRow + maxRadius));
+    const minC = Math.max(0, Math.floor(clickCol - maxRadius));
+    const maxC = Math.min(cols - 1, Math.ceil(clickCol + maxRadius));
+
+    for (let r = minR; r <= maxR; r++) {
+      for (let c = minC; c <= maxC; c++) {
         const dist = Math.sqrt(Math.pow(r - clickRow, 2) + Math.pow(c - clickCol, 2));
         if (dist <= maxRadius) {
-          const delay = dist * 52; // speed of the expanding ring wave in ms
+          // Diminishing intensity as the wave travels outward (fades out midway)
+          const intensity = Math.pow((maxRadius - dist) / maxRadius, 1.4);
+          if (intensity <= 0.05) continue;
+
+          const delay = dist * 48; // speed of the expanding ring wave in ms
           const key = `${r}-${c}`;
 
-          // When the ring wavefront arrives at cell (r, c)
           const timer = setTimeout(() => {
-            const now = Date.now();
             setActiveCells((prev) => ({
               ...prev,
-              [key]: now,
+              [key]: intensity,
             }));
 
-            // Fade out smoothly after the ring passes
+            // Fade out smoothly and quickly
             const fadeTimer = setTimeout(() => {
               setActiveCells((prev) => {
                 const next = { ...prev };
                 delete next[key];
                 return next;
               });
-            }, 850);
+            }, 550);
 
             if (timerRefs.current[rippleId]) {
               timerRefs.current[rippleId].push(fadeTimer);
@@ -71,7 +77,6 @@ export default function HeroGrid() {
     }
   }, [gridSize]);
 
-  // Clean up any pending timeouts on unmount
   useEffect(() => {
     return () => {
       Object.values(timerRefs.current).forEach((timers) => {
@@ -94,20 +99,26 @@ export default function HeroGrid() {
         {Array.from({ length: gridSize.rows }).map((_, r) =>
           Array.from({ length: gridSize.cols }).map((_, c) => {
             const key = `${r}-${c}`;
-            const isLit = !!activeCells[key];
+            const intensity = activeCells[key] || 0;
+            const isLit = intensity > 0;
 
             return (
               <div
                 key={key}
                 onClick={() => triggerRingRipple(r, c)}
-                className={`border border-white/[0.05] transition-all duration-700 ease-out cursor-pointer ${
-                  isLit
-                    ? "bg-white/[0.12] border-white/25 shadow-[0_0_20px_rgba(255,255,255,0.18)] z-10"
-                    : "hover:bg-white/[0.08] hover:border-white/20 hover:shadow-[0_0_12px_rgba(255,255,255,0.08)]"
-                }`}
+                className="border border-white/[0.04] transition-all duration-500 ease-out cursor-pointer hover:bg-white/[0.05] hover:border-white/[0.14]"
                 style={{
                   width: `${gridSize.cellSize}px`,
                   height: `${gridSize.cellSize}px`,
+                  backgroundColor: isLit
+                    ? `rgba(255, 255, 255, ${0.03 + intensity * 0.045})`
+                    : undefined,
+                  borderColor: isLit
+                    ? `rgba(255, 255, 255, ${0.06 + intensity * 0.09})`
+                    : undefined,
+                  boxShadow: isLit
+                    ? `0 0 12px rgba(255, 255, 255, ${intensity * 0.04})`
+                    : undefined,
                 }}
               />
             );
@@ -115,7 +126,7 @@ export default function HeroGrid() {
         )}
       </div>
 
-      {/* Subtle radial blend so edges fade into background */}
+      {/* Subtle radial blend */}
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_95%_75%_at_50%_35%,rgba(0,0,0,0)_0%,rgba(0,0,0,0.4)_75%,#000000_100%)]" />
     </div>
   );
