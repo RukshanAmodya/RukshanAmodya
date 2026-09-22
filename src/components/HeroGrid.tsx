@@ -2,10 +2,6 @@
 
 import React, { useState, useEffect, useCallback, useRef } from "react";
 
-interface ActiveCell {
-  intensity: number; // 0 to 1
-}
-
 export default function HeroGrid() {
   const [gridSize, setGridSize] = useState({ cols: 24, rows: 14, cellSize: 68 });
   const [activeCells, setActiveCells] = useState<{ [key: string]: number }>({});
@@ -28,8 +24,7 @@ export default function HeroGrid() {
 
   const triggerRingRipple = useCallback((clickRow: number, clickCol: number) => {
     const { rows, cols } = gridSize;
-    // Radius limited so the wave fades out midway instead of spreading forever
-    const maxRadius = 7.5;
+    const maxRadius = 8.5;
     const rippleId = `${Date.now()}-${Math.random()}`;
     timerRefs.current[rippleId] = [];
 
@@ -42,11 +37,11 @@ export default function HeroGrid() {
       for (let c = minC; c <= maxC; c++) {
         const dist = Math.sqrt(Math.pow(r - clickRow, 2) + Math.pow(c - clickCol, 2));
         if (dist <= maxRadius) {
-          // Diminishing intensity as the wave travels outward (fades out midway)
-          const intensity = Math.pow((maxRadius - dist) / maxRadius, 1.4);
-          if (intensity <= 0.05) continue;
+          const intensity = Math.pow((maxRadius - dist) / maxRadius, 1.3);
+          if (intensity <= 0.04) continue;
 
-          const delay = dist * 48; // speed of the expanding ring wave in ms
+          // Slightly longer, more graceful wave propagation delay
+          const delay = dist * 62;
           const key = `${r}-${c}`;
 
           const timer = setTimeout(() => {
@@ -55,14 +50,14 @@ export default function HeroGrid() {
               [key]: intensity,
             }));
 
-            // Fade out smoothly and quickly
+            // Longer fadeout linger time so the animation lasts gracefully
             const fadeTimer = setTimeout(() => {
               setActiveCells((prev) => {
                 const next = { ...prev };
                 delete next[key];
                 return next;
               });
-            }, 550);
+            }, 900);
 
             if (timerRefs.current[rippleId]) {
               timerRefs.current[rippleId].push(fadeTimer);
@@ -106,18 +101,18 @@ export default function HeroGrid() {
               <div
                 key={key}
                 onClick={() => triggerRingRipple(r, c)}
-                className="border border-white/[0.04] transition-all duration-500 ease-out cursor-pointer hover:bg-white/[0.05] hover:border-white/[0.14]"
+                className="border border-white/[0.04] transition-all duration-700 ease-out cursor-pointer hover:bg-white/[0.05] hover:border-white/[0.14]"
                 style={{
                   width: `${gridSize.cellSize}px`,
                   height: `${gridSize.cellSize}px`,
                   backgroundColor: isLit
-                    ? `rgba(255, 255, 255, ${0.03 + intensity * 0.045})`
+                    ? `rgba(255, 255, 255, ${0.025 + intensity * 0.055})`
                     : undefined,
                   borderColor: isLit
-                    ? `rgba(255, 255, 255, ${0.06 + intensity * 0.09})`
+                    ? `rgba(255, 255, 255, ${0.05 + intensity * 0.1})`
                     : undefined,
                   boxShadow: isLit
-                    ? `0 0 12px rgba(255, 255, 255, ${intensity * 0.04})`
+                    ? `0 0 14px rgba(255, 255, 255, ${intensity * 0.05})`
                     : undefined,
                 }}
               />
