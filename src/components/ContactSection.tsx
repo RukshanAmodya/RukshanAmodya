@@ -102,22 +102,50 @@ export default function ContactSection() {
     setErrorMessage(null);
 
     try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+      let success = false;
+      let errorMsg = null;
 
-      const data = await res.json();
+      try {
+        const res = await fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        });
+        if (res.ok) {
+          const data = await res.json();
+          if (data.success) {
+            success = true;
+          } else {
+            errorMsg = data.error;
+          }
+        }
+      } catch (nodeErr) {
+        // Fallback for static hosting like GitHub Pages
+      }
 
-      if (res.ok && data.success) {
+      // If local/server route wasn't available, dispatch via Cloudflare Worker Direct-SMTP
+      if (!success) {
+        const cfRes = await fetch("https://amodya-contact-worker.agency-digitra.workers.dev", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        });
+        const cfData = await cfRes.json();
+        if (cfData && cfData.success) {
+          success = true;
+        } else if (cfData && cfData.error) {
+          errorMsg = cfData.error;
+        }
+      }
+
+      if (success) {
         setSent(true);
         setFormData({ name: "", email: "", phone: "", message: "" });
         setTimeout(() => {
           setSent(false);
         }, 5000);
       } else {
-        setErrorMessage(data.error || "Failed to send message. Please try again.");
+        setErrorMessage(errorMsg || "Failed to send message. Please try again.");
       }
     } catch (err: any) {
       setErrorMessage("Network error occurred. Please try again later.");
