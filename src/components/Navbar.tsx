@@ -54,9 +54,11 @@ export default function Navbar() {
           href="#home"
           className="flex items-center gap-2 font-bold text-sm tracking-tight text-white hover:text-white/90 transition-colors"
         >
-          <div className="w-5 h-5 rounded-full bg-gradient-to-tr from-amber-500 to-orange-400 flex items-center justify-center p-0.5 text-black">
-            <Flame className="w-3.5 h-3.5 fill-black stroke-black" />
-          </div>
+          <img
+            src="/logo.webp"
+            alt="logo"
+            className="w-5 h-5 object-contain rounded-full"
+          />
           <span>thejan.dev</span>
         </Link>
 
