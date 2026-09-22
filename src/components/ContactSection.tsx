@@ -739,6 +739,16 @@ export default function ContactSection() {
               </li>
               <li>
                 <a
+                  href="https://github.com/RukshanAmodya/BookBoo"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors inline-block"
+                >
+                  BookBoo Stories
+                </a>
+              </li>
+              <li>
+                <a
                   href="https://github.com/RukshanAmodya/Aethera-V2"
                   target="_blank"
                   rel="noopener noreferrer"

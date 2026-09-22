@@ -127,6 +127,16 @@ const projects: Project[] = [
     github: "https://github.com/RukshanAmodya/Aethera-V2",
     userCount: "25,000+",
   },
+  {
+    id: 12,
+    title: "BookBoo Story App",
+    description: "Interactive animated children's storybook app with rich illustrated visuals, voice narration, and engaging audio effects.",
+    tech: ["Flutter", "Story Animation", "Audio Narration", "Kids UX"],
+    image: "/assets/images/projects/bookboo.svg",
+    link: "https://github.com/RukshanAmodya/BookBoo",
+    github: "https://github.com/RukshanAmodya/BookBoo",
+    userCount: "4,500+",
+  },
 ];
 
 export default function ProjectsSection() {
