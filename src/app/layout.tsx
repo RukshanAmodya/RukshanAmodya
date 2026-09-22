@@ -53,7 +53,8 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       { url: assetUrl("/logo.webp"), type: "image/webp" },
-      { url: assetUrl("/favicon.svg"), type: "image/svg+xml" },
+      { url: assetUrl("/favicon.png"), type: "image/png" },
+      { url: assetUrl("/favicon.ico") },
     ],
     shortcut: assetUrl("/logo.webp"),
     apple: assetUrl("/logo.webp"),
@@ -182,7 +183,8 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark scroll-smooth">
       <head>
-        <link rel="icon" href={assetUrl("/logo.webp")} />
+        <link rel="icon" type="image/webp" href={assetUrl("/logo.webp")} />
+        <link rel="shortcut icon" href={assetUrl("/logo.webp")} />
         <link rel="apple-touch-icon" href={assetUrl("/logo.webp")} />
         <meta property="og:image" content={`${siteUrl}/og-image.svg`} />
         <meta property="twitter:image" content={`${siteUrl}/og-image.svg`} />
