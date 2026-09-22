@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="512"
+   height="512"
+   viewBox="0 0 512 512"
+   version="1.1"
+   id="svg1"
+   xml:space="preserve"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><defs
+     id="defs1" /><g
+     id="layer1"><circle
+       style="fill:#2e3548;fill-opacity:1;stroke:#858585;stroke-width:8;stroke-dasharray:none;stroke-opacity:1"
+       id="path1"
+       cx="256.00003"
+       cy="256.00006"
+       r="241.31339" /><g
+       id="g1"
+       transform="matrix(1.12,0,0,1.12,144,88)"><path
+         id="path0_fill"
+         class="st0"
+         d="m 50,300 c 27.6,0 50,-22.4 50,-50 V 200 H 50 c -27.6,0 -50,22.4 -50,50 0,27.6 22.4,50 50,50 z" /><path
+         id="path1_fill"
+         class="st1"
+         d="m 0,150 c 0,-27.6 22.4,-50 50,-50 h 50 V 200 H 50 C 22.4,200 0,177.6 0,150 Z" /><path
+         id="path1_fill_1_"
+         class="st2"
+         d="M 0,50 C 0,22.4 22.4,0 50,0 h 50 V 100 H 50 C 22.4,100 0,77.6 0,50 Z" /><path
+         id="path2_fill"
+         class="st3"
+         d="m 100,0 h 50 c 27.6,0 50,22.4 50,50 0,27.6 -22.4,50 -50,50 h -50 z" /><path
+         id="path3_fill"
+         class="st4"
+         d="m 200,150 c 0,27.6 -22.4,50 -50,50 -27.6,0 -50,-22.4 -50,-50 0,-27.6 22.4,-50 50,-50 27.6,0 50,22.4 50,50 z" /></g></g><style
+     type="text/css"
+     id="style1">.st0{fill:#0acf83}.st1{fill:#a259ff}.st2{fill:#f24e1e}.st3{fill:#ff7262}.st4{fill:#1abcfe}</style></svg>

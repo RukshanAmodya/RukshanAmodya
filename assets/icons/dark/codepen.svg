@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="512"
+   height="512"
+   viewBox="0 0 512 512"
+   version="1.1"
+   id="svg1"
+   xml:space="preserve"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><defs
+     id="defs1" /><g
+     id="layer1"><circle
+       style="fill:#2e3548;fill-opacity:1;stroke:#858585;stroke-width:8;stroke-dasharray:none;stroke-opacity:1"
+       id="path1"
+       cx="256.00003"
+       cy="256.00006"
+       r="241.31339" /><g
+       style="fill:#f9f9f9"
+       id="g1"
+       transform="matrix(12.769596,0,0,12.769596,51.686464,51.686464)"><path
+         d="m 16,2.84375 -0.5625,0.375 -12,8.03125 L 3,11.53125 v 8.9375 l 0.4375,0.28125 12,8.03125 0.5625,0.375 0.5625,-0.375 12,-8.03125 L 29,20.46875 v -8.9375 L 28.5625,11.25 l -12,-8.03125 z m -1,3.0625 v 5.4375 L 9.84375,14.8125 5.8125,12.09375 Z m 2,0 9.1875,6.1875 L 22.15625,14.8125 17,11.34375 Z M 16,13.09375 20.34375,16 16,18.90625 11.65625,16 Z M 5,13.9375 8.0625,16 5,18.0625 Z m 22,0 v 4.125 L 23.9375,16 Z M 9.875,17.1875 15,20.65625 v 5.4375 l -9.1875,-6.1875 z m 12.25,0 4.0625,2.71875 L 17,26.09375 v -5.4375 z"
+         id="path1-8"
+         style="fill:#f9f9f9" /></g></g></svg>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="512"
+   height="512"
+   viewBox="0 0 512 512"
+   version="1.1"
+   id="svg1"
+   xml:space="preserve"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><defs
+     id="defs1"><linearGradient
+       id="linearGradient1"><stop
+         style="stop-color:#e44b20;stop-opacity:1;"
+         offset="0"
+         id="stop1" /><stop
+         style="stop-color:#f06423;stop-opacity:1;"
+         offset="1"
+         id="stop2" /></linearGradient><linearGradient
+       xlink:href="#linearGradient1"
+       id="linearGradient2"
+       x1="501.31332"
+       y1="255.99997"
+       x2="10.686604"
+       y2="255.99997"
+       gradientUnits="userSpaceOnUse" /></defs><g
+     id="layer1"><circle
+       style="fill:url(#linearGradient2);fill-opacity:1;stroke:#858585;stroke-width:8;stroke-dasharray:none;stroke-opacity:1"
+       id="path1"
+       cx="256"
+       cy="256"
+       r="241.31339" /><path
+       fill="#e44d26"
+       d="M 114.70998,108 140.42688,396.12441 255.82778,428 371.54742,396.16039 397.29002,108 Z m 229.08991,68.21598 -1.61164,18.43494 -0.70942,8.45407 H 206.10845 l 3.23099,35.98567 h 128.92123 l -0.86366,8.92187 -8.31013,92.84046 -0.61175,5.83481 -72.47514,19.91808 v 0.006 l -0.0873,0.0463 -72.42631,-19.08013 -4.91719,-54.50801 h 35.51015 l 2.51643,28.06626 39.29378,10.48982 h 0.11053 v -1.40344 l 39.46857,-9.96032 4.12293,-45.18515 H 176.98831 l -8.69567,-97.97613 -0.84567,-9.98088 h 177.20115 z"
+       id="path1-2"
+       style="fill:#ffffff;stroke-width:2.57041" /></g></svg>

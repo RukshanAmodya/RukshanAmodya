@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="512"
+   height="512"
+   viewBox="0 0 512 512"
+   version="1.1"
+   id="svg1"
+   xml:space="preserve"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><defs
+     id="defs1" /><g
+     id="layer1"><circle
+       style="fill:#2e3548;fill-opacity:1;stroke:#858585;stroke-width:8;stroke-dasharray:none;stroke-opacity:1"
+       id="path1"
+       cx="256.00003"
+       cy="256.00006"
+       r="241.31339" /><g
+       id="g2"
+       transform="matrix(4.2424242,0,0,4.2424242,114.72727,116)">
+  <path
+   class="st0"
+   d="M 0,33 C 0,14.8 14.9,0 33.3,0 51.7,0 66.6,14.8 66.6,33 66.6,48.9 55.2,62.3 40,65.3 37.8,65.7 35.6,66 33.3,66 H 0 Z"
+   id="path1-0">
+  </path>
+  <path
+   class="st1"
+   d="m 56.4,29.9 h -15 L 37.9,36 H 50.3 C 48.4,46.6 36.5,53.7 24.7,47.7 22.2,46.4 20.1,44.4 18.7,41.9 11.8,28.9 21.1,16 33.4,16 c 5.1,0 9.6,2.2 12.8,5.7 l 3.2,-5.4 C 44.8,12 38.6,9.5 31.8,10 20.2,10.8 10.8,20.3 10.3,31.8 9.6,45 20.2,55.9 33.4,55.9 c 13.2,0 23.2,-10.3 23.2,-23 0,-1 -0.1,-2 -0.2,-3 z"
+   id="path2">
+  </path>
+ </g></g><style
+     type="text/css"
+     id="style1">
+  .st0{fill:#027E6F;}
+	.st1{fill:#FFFFFF;}
+ </style></svg>

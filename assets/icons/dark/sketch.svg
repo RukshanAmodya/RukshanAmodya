@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="512"
+   height="512"
+   viewBox="0 0 512 512"
+   version="1.1"
+   id="svg1"
+   xml:space="preserve"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><defs
+     id="defs1" /><g
+     id="layer1"><circle
+       style="fill:#2e3548;fill-opacity:1;stroke:#858585;stroke-width:8;stroke-dasharray:none;stroke-opacity:1"
+       id="path1"
+       cx="256.00003"
+       cy="256.00006"
+       r="241.31339" /><g
+       id="sketch-symbol"
+       fill-rule="nonzero"
+       style="fill:none;stroke:none;stroke-width:1"
+       transform="matrix(0.9442895,0,0,0.9442895,70.349866,88.000001)"><polygon
+         id="Path"
+         fill="#fdb300"
+         points="196.60282,0 307.41532,11.715155 393.20565,126.88108 196.60282,355.82301 0,126.88108 85.790323,11.715155 " /><g
+         id="Group"
+         transform="translate(0,126.88108)"><polygon
+           id="polygon1"
+           fill="#ea6c00"
+           points="196.603,228.942 0,0 79.634,0 " /><polygon
+           id="polygon2"
+           fill="#ea6c00"
+           transform="matrix(-1,0,0,1,589.80794,0)"
+           points="393.20547,228.942 196.60247,0 276.23647,0 " /><polygon
+           id="polygon3"
+           fill="#fdad00"
+           points="313.572,0 196.603,228.942 79.634,0 " /></g><g
+         id="g8"><polygon
+           id="polygon4"
+           fill="#fdd231"
+           points="85.79,11.715 79.634,126.881 196.603,0 " /><polygon
+           id="polygon5"
+           fill="#fdd231"
+           transform="matrix(-1,0,0,1,510.17379,0)"
+           points="202.7584,11.715 196.6024,126.881 313.5714,0 " /><polygon
+           id="polygon6"
+           fill="#fdad00"
+           transform="matrix(-1,0,0,1,700.62094,0)"
+           points="393.20597,11.715 387.04897,126.881 307.41497,126.881 " /><polygon
+           id="polygon7"
+           fill="#fdad00"
+           points="85.79,11.715 79.634,126.881 0,126.881 " /><polygon
+           id="polygon8"
+           fill="#feeeb7"
+           points="79.634,126.881 313.572,126.881 196.603,0 " /></g></g></g></svg>
