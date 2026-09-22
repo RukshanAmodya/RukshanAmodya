@@ -176,7 +176,7 @@ export default function ContactSection() {
             <div className="space-y-3 pt-2">
               {/* Email */}
               <a
-                href="mailto:rukshanamodya@gmail.com"
+                href="mailto:nmr.amodya@gmail.com"
                 className="flex items-center gap-3.5 p-3.5 rounded-2xl bg-[#0e0e0e] hover:bg-[#161616] border border-white/[0.08] hover:border-white/[0.2] transition-all group max-w-md"
               >
                 <div className="w-10 h-10 rounded-xl bg-neutral-900 border border-white/5 flex items-center justify-center text-neutral-300 group-hover:text-white shrink-0">
@@ -185,14 +185,16 @@ export default function ContactSection() {
                 <div>
                   <p className="text-[11px] text-neutral-400 font-medium">Email</p>
                   <p className="text-sm font-semibold text-white group-hover:text-cyan-400 transition-colors">
-                    rukshanamodya@gmail.com
+                    nmr.amodya@gmail.com
                   </p>
                 </div>
               </a>
 
-              {/* Mobile / Phone Number */}
+              {/* Mobile / Phone Number & WhatsApp */}
               <a
-                href="tel:+94760000000"
+                href="https://wa.me/94768605501"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center gap-3.5 p-3.5 rounded-2xl bg-[#0e0e0e] hover:bg-[#161616] border border-white/[0.08] hover:border-emerald-500/30 transition-all group max-w-md"
               >
                 <div className="w-10 h-10 rounded-xl bg-neutral-900 border border-white/5 flex items-center justify-center text-emerald-400 shrink-0">
@@ -201,7 +203,7 @@ export default function ContactSection() {
                 <div>
                   <p className="text-[11px] text-neutral-400 font-medium">Direct Call / WhatsApp</p>
                   <p className="text-sm font-semibold text-white group-hover:text-emerald-400 transition-colors">
-                    +94 7X XXX XXXX
+                    +94 76 860 5501
                   </p>
                 </div>
               </a>
@@ -571,7 +573,7 @@ export default function ContactSection() {
                 Western Province, Sri Lanka
               </p>
               <p className="text-xs text-neutral-500 mt-0.5">
-                rukshanamodya@gmail.com
+                nmr.amodya@gmail.com
               </p>
             </div>
 
@@ -823,7 +825,7 @@ export default function ContactSection() {
             <ul className="space-y-2 text-xs text-neutral-400">
               <li>
                 <a
-                  href="mailto:rukshanamodya@gmail.com"
+                  href="mailto:nmr.amodya@gmail.com"
                   className="hover:text-white transition-colors"
                 >
                   Email

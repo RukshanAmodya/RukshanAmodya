@@ -14,7 +14,7 @@ export async function POST(req: Request) {
       );
     }
 
-    const receiverEmail = process.env.CONTACT_RECEIVER_EMAIL || "rukshanamodya@gmail.com";
+    const receiverEmail = process.env.CONTACT_RECEIVER_EMAIL || "nmr.amodya@gmail.com";
     const timestamp = new Date().toLocaleString("en-US", { timeZone: "Asia/Colombo" });
 
     let emailSent = false;
