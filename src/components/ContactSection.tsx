@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { Mail, Globe, Laptop, Send, Github, Linkedin, Twitter, Flame, Activity, Trophy, Star, GitFork, Check } from "lucide-react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 import LottiePlayer from "./LottiePlayer";
 
 // Generate realistic GitHub contribution matrix (52 weeks x 7 days)
@@ -14,19 +15,18 @@ function generateContributionData() {
   for (let w = 0; w < weeks; w++) {
     const week: number[] = [];
     for (let d = 0; d < days; d++) {
-      // Create realistic cluster pattern towards later months
       const weight = w / weeks;
       const rand = Math.random();
       if (rand < 0.25 - weight * 0.15) {
-        week.push(0); // empty
+        week.push(0);
       } else if (rand < 0.55) {
-        week.push(1); // light green
+        week.push(1);
       } else if (rand < 0.8) {
-        week.push(2); // medium green
+        week.push(2);
       } else if (rand < 0.94) {
-        week.push(3); // dark bright green
+        week.push(3);
       } else {
-        week.push(4); // brightest green
+        week.push(4);
       }
     }
     grid.push(week);
@@ -60,7 +60,7 @@ export default function ContactSection() {
   };
 
   return (
-    <footer id="contact" className="pt-24 pb-16 bg-black border-t border-white/[0.06] relative overflow-hidden">
+    <footer id="contact" className="pt-24 pb-4 bg-black border-t border-white/[0.06] relative overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-8">
         {/* Section Header */}
         <div className="mb-16">
@@ -276,7 +276,7 @@ export default function ContactSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="bg-[#0b0b0b]/95 border border-white/[0.08] rounded-2xl p-6 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.6)]"
+          className="bg-[#0b0b0b]/95 border border-white/[0.08] rounded-2xl p-6 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.6)] mb-20"
         >
           {/* Header */}
           <div className="flex items-center gap-3 mb-8">
@@ -400,14 +400,185 @@ export default function ContactSection() {
           </div>
         </motion.div>
 
-        {/* Bottom Copyright Bar */}
-        <div className="pt-12 mt-12 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-neutral-500">
-          <p>© {new Date().getFullYear()} Thejan GO. All rights reserved.</p>
-          <div className="flex items-center gap-6">
-            <a href="#home" className="hover:text-neutral-300 transition-colors">
-              Back to Top
-            </a>
+        {/* 5-Column Navigation Footer */}
+        <div className="pt-16 border-t border-white/[0.06] grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8 lg:gap-12 text-left">
+          {/* Column 1: Brand & Copyright */}
+          <div className="col-span-2 sm:col-span-1 space-y-3">
+            <Link href="#home" className="flex items-center gap-2">
+              <img
+                src="/logo.webp"
+                alt="Thejan"
+                className="w-6 h-6 object-contain rounded-full"
+              />
+              <span className="font-bold text-white text-base tracking-tight">Thejan</span>
+            </Link>
+            <p className="text-xs text-neutral-500 leading-relaxed max-w-[190px]">
+              © copyright Thejan 2026. All rights reserved.
+            </p>
           </div>
+
+          {/* Column 2: Pages */}
+          <div>
+            <h4 className="text-sm font-bold text-white mb-3 tracking-tight">Pages</h4>
+            <ul className="space-y-2 text-xs text-neutral-400">
+              <li>
+                <Link href="#home" className="hover:text-white transition-colors">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link href="#skills" className="hover:text-white transition-colors">
+                  Skills
+                </Link>
+              </li>
+              <li>
+                <Link href="#projects" className="hover:text-white transition-colors">
+                  Projects
+                </Link>
+              </li>
+              <li>
+                <Link href="#experience" className="hover:text-white transition-colors">
+                  Experience
+                </Link>
+              </li>
+              <li>
+                <Link href="#contact" className="hover:text-white transition-colors">
+                  Contact
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 3: Socials */}
+          <div>
+            <h4 className="text-sm font-bold text-white mb-3 tracking-tight">Socials</h4>
+            <ul className="space-y-2 text-xs text-neutral-400">
+              <li>
+                <a
+                  href="https://t.me/Thejan_GO"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors"
+                >
+                  Telegram
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://github.com/thejan64go"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors"
+                >
+                  GitHub
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://linkedin.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors"
+                >
+                  LinkedIn
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://x.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors"
+                >
+                  Twitter
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 4: Projects */}
+          <div>
+            <h4 className="text-sm font-bold text-white mb-3 tracking-tight">Projects</h4>
+            <ul className="space-y-2 text-xs text-neutral-400">
+              <li>
+                <a
+                  href="https://logic.lk/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors"
+                >
+                  Logic.lk
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://pasinduathukorala.lk/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors"
+                >
+                  PasinduAthukorala.lk
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://t.me/TikTokDownx_bot"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors"
+                >
+                  TikTok Bot
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://t.me/MtProxySG_bot"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors"
+                >
+                  MtProxy Bot
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 5: Contact */}
+          <div>
+            <h4 className="text-sm font-bold text-white mb-3 tracking-tight">Contact</h4>
+            <ul className="space-y-2 text-xs text-neutral-400">
+              <li>
+                <a
+                  href="mailto:thejan64go@gmail.com"
+                  className="hover:text-white transition-colors"
+                >
+                  Email
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://thejan.dev"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-white transition-colors"
+                >
+                  Portfolio
+                </a>
+              </li>
+              <li>
+                <Link href="#contact" className="hover:text-white transition-colors">
+                  Get in touch
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Huge Bottom Watermark Title */}
+        <div className="w-full overflow-hidden select-none pointer-events-none mt-16 sm:mt-24 pb-0 text-center">
+          <h1 className="font-black text-6xl sm:text-8xl md:text-9xl lg:text-[13rem] xl:text-[15rem] tracking-tighter text-neutral-900/60 uppercase leading-none select-none">
+            THEJAN GO
+          </h1>
         </div>
       </div>
     </footer>
