@@ -203,7 +203,7 @@ function TitleCard({ item }: { item: Milestone }) {
 
 function DetailsBlock({ item }: { item: Milestone }) {
   return (
-    <div className="w-full text-left py-2">
+    <div className="w-full text-left py-2 px-1">
       <p className="text-xs font-semibold text-neutral-400 mb-3 tracking-wide">
         {item.period}
       </p>
@@ -238,15 +238,17 @@ function DetailsBlock({ item }: { item: Milestone }) {
 
 export default function ExperienceSection() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const timelineRef = useRef<HTMLDivElement>(null);
 
+  // Smooth scroll tracking relative to viewport center
   const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start 70%", "end 30%"],
+    target: timelineRef,
+    offset: ["start center", "end center"],
   });
 
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 80,
-    damping: 20,
+    stiffness: 100,
+    damping: 25,
     restDelta: 0.001,
   });
 
@@ -283,17 +285,17 @@ export default function ExperienceSection() {
           </motion.div>
         </div>
 
-        {/* Desktop 2-Column Alternating Timeline */}
-        <div className="relative">
-          {/* Central Timeline Vertical Axis (Desktop) */}
-          <div className="hidden md:block absolute left-1/2 top-4 bottom-4 -translate-x-1/2 w-[1px] bg-neutral-800/80">
+        {/* 2-Column Desktop Grid Timeline */}
+        <div ref={timelineRef} className="relative">
+          {/* Central Timeline Vertical Line */}
+          <div className="hidden md:block absolute left-1/2 top-4 bottom-4 -translate-x-1/2 w-[1px] bg-neutral-800 pointer-events-none">
             {/* Scroll-driven Glowing Beam Line */}
             <motion.div
-              className="absolute top-0 left-0 w-[1px] bg-gradient-to-b from-white/30 via-white to-white/40 shadow-[0_0_12px_rgba(255,255,255,0.8)]"
+              className="absolute top-0 left-0 w-[1px] bg-gradient-to-b from-white/20 via-white to-white shadow-[0_0_12px_rgba(255,255,255,0.8)]"
               style={{ height: beamHeight }}
             />
 
-            {/* Glowing Radiant Orb traveling down */}
+            {/* Glowing Radiant Orb traveling in sync with viewport center */}
             <motion.div
               className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-white rounded-full z-20 shadow-[0_0_15px_#ffffff,0_0_30px_#ffffff,0_0_45px_rgba(255,255,255,0.9)]"
               style={{ top: orbY }}
@@ -314,21 +316,23 @@ export default function ExperienceSection() {
                   initial={{ opacity: 0, y: 28 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.2 }}
-                  transition={{ duration: 0.6, delay: idx * 0.08 }}
+                  transition={{ duration: 0.6, delay: idx * 0.06 }}
                   className="relative"
                 >
-                  {/* Desktop Grid Layout (Left - Center - Right) */}
-                  <div className="hidden md:grid grid-cols-[1fr_100px_1fr] items-center gap-6 lg:gap-10">
+                  {/* Desktop Grid Layout (Left - 120px Center Column - Right) */}
+                  <div className="hidden md:grid grid-cols-[1fr_120px_1fr] items-center gap-6 lg:gap-8">
                     {/* Left Column */}
-                    <div className="flex justify-end">
+                    <div className="flex justify-end w-full">
                       {item.flip ? detailsComponent : cardComponent}
                     </div>
 
-                    {/* Center Column: Year Badge next to center line */}
-                    <div className="relative flex items-center justify-center h-full">
+                    {/* Center Column: Clean Year Marker positioning without any overlap */}
+                    <div className="relative flex items-center justify-center w-full h-full">
                       <span
-                        className={`absolute text-xs font-bold tabular-nums text-neutral-500 whitespace-nowrap ${
-                          item.flip ? "left-7 text-left" : "right-7 text-right"
+                        className={`absolute text-[11px] font-bold tabular-nums text-neutral-400 whitespace-nowrap select-none ${
+                          item.flip
+                            ? "left-6 text-left"
+                            : "right-6 text-right"
                         }`}
                       >
                         {item.year}
@@ -336,18 +340,18 @@ export default function ExperienceSection() {
                     </div>
 
                     {/* Right Column */}
-                    <div className="flex justify-start">
+                    <div className="flex justify-start w-full">
                       {item.flip ? cardComponent : detailsComponent}
                     </div>
                   </div>
 
                   {/* Mobile Single Column Layout */}
                   <div className="md:hidden flex gap-4 pl-2">
-                    {/* Left Mini Axis with Year & Indicator */}
+                    {/* Left Mini Axis */}
                     <div className="relative flex flex-col items-center shrink-0 w-8">
                       <div className="absolute top-0 bottom-0 w-[1px] bg-neutral-800" />
                       <div className="relative z-10 w-3 h-3 rounded-full bg-white shadow-[0_0_10px_#ffffff] mt-2 shrink-0" />
-                      <span className="text-[10px] font-bold text-neutral-500 mt-2 rotate-90 origin-center">
+                      <span className="text-[10px] font-bold text-neutral-400 mt-2 rotate-90 origin-center">
                         {item.year}
                       </span>
                     </div>
