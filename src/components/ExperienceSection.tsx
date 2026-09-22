@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef } from "react";
-import { GraduationCap, Briefcase } from "lucide-react";
+import { GraduationCap, ShieldCheck, Code, BookOpen, Award, Layers } from "lucide-react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import LottiePlayer from "./LottiePlayer";
 
@@ -9,118 +9,119 @@ interface Milestone {
   year: string;
   type: "edu" | "work";
   title: string;
-  org: string;
+  org?: string;
+  badgeLabel: string;
   period: string;
   bullets: string[];
   tags: string[];
   logo?: string;
-  badgeLabel: string;
+  iconType?: string;
   flip: boolean; // false: Card Left, Details Right | true: Details Left, Card Right
 }
 
 const milestones: Milestone[] = [
   {
-    year: "2022",
-    type: "edu",
-    title: "GCE Advanced Level",
-    org: "Sri Lanka",
-    badgeLabel: "EDUCATION",
-    period: "Completed 2022",
-    bullets: [
-      "Sat A/L exams with Mathematics & ICT streams.",
-      "Qualified for higher education entry.",
-    ],
-    tags: ["Mathematics", "ICT", "GCE A/L"],
-    flip: false,
-  },
-  {
-    year: "2022",
-    type: "work",
-    title: "Founder",
-    org: "CodexSL",
-    badgeLabel: "WORK EXPERIENCE",
-    period: "2022 – Present",
-    bullets: [
-      "Founded CodexSL, a tech startup focused on the Telegram ecosystem.",
-      "Building Telegram bots and mini apps as our core products.",
-      "Leading engineering, product, and business direction.",
-    ],
-    tags: ["Telegram Bots", "Mini Apps"],
-    logo: "/logos/codexsl.avif",
-    flip: true,
-  },
-  {
     year: "2023",
     type: "edu",
-    title: "BSc (Hons) Software Engineering",
-    org: "SLIIT City University",
+    title: "Diploma in Cybersecurity",
+    org: "Information Security & Defense",
     badgeLabel: "EDUCATION",
-    period: "2023 – Present",
+    period: "Completed 2023",
     bullets: [
-      "Studying software architecture, web dev & system design.",
-      "Balancing full-time degree alongside active startup work.",
+      "Focused on network security, threat analysis, and ethical defense strategies.",
+      "Practical experience in vulnerability assessments and system hardening.",
     ],
-    tags: ["Software Engineering", "SLIIT", "Undergraduate"],
-    logo: "/logos/sliit-city.avif",
+    tags: ["Cybersecurity", "Network Security", "Ethical Hacking"],
+    iconType: "shield",
     flip: false,
   },
   {
     year: "2024",
-    type: "work",
-    title: "Founder",
-    org: "Blumix",
-    badgeLabel: "WORK EXPERIENCE",
-    period: "Nov 2024 – Present",
+    type: "edu",
+    title: "Certificate in Fullstack Development",
+    org: "Modern Web Engineering",
+    badgeLabel: "EDUCATION",
+    period: "Completed 2024",
     bullets: [
-      "Founded Blumix, a Generative AI service providing startup.",
-      "Served 30+ clients with AI-powered creative solutions.",
-      "Delivered 15,000+ AI image generation services.",
-      "Produced nearly 50+ AI video promotions for clients.",
+      "Mastered modern full-stack web architectures and RESTful API integrations.",
+      "Engineered scalable web applications using React, Node.js, and cloud databases.",
     ],
-    tags: ["Generative AI", "Image Generation", "AI Video", "Startup"],
-    logo: "/logos/blumix.avif",
+    tags: ["Fullstack", "Web Development", "MERN Stack"],
+    iconType: "code",
+    flip: true,
+  },
+  {
+    year: "2025",
+    type: "edu",
+    title: "GCE Ordinary Level",
+    org: "Sri Lanka",
+    badgeLabel: "EDUCATION",
+    period: "Completed 2025",
+    bullets: [
+      "Completed GCE Ordinary Level national examinations.",
+      "Achieved strong foundation in Mathematics, Science, and English streams.",
+    ],
+    tags: ["GCE O/L", "Secondary Education"],
+    iconType: "award",
+    flip: false,
+  },
+  {
+    year: "2026",
+    type: "edu",
+    title: "Diploma in English",
+    org: "Professional & Technical Communication",
+    badgeLabel: "EDUCATION",
+    period: "2026 – Present",
+    bullets: [
+      "Advanced professional English proficiency, technical writing, and communication.",
+      "Enhanced presentation, documentation, and interpersonal collaboration skills.",
+    ],
+    tags: ["English", "Communication", "Professional Skills"],
+    iconType: "book",
     flip: true,
   },
   {
     year: "2026",
-    type: "work",
-    title: "Co-Founder",
-    org: "elix.lk",
-    badgeLabel: "WORK EXPERIENCE",
+    type: "edu",
+    title: "Diploma in Software Engineering",
+    org: "Software Systems & Architecture",
+    badgeLabel: "EDUCATION",
     period: "2026 – Present",
     bullets: [
-      "Co-founded elix.lk, building web apps and software solutions.",
-      "Delivering products like LMS platforms and product websites.",
-      "Contributing to product roadmap and technical growth.",
+      "Comprehensive study of software design patterns, data structures, and algorithms.",
+      "End-to-end application lifecycle management, agile methodologies, and clean code practices.",
     ],
-    tags: ["Web Apps", "Software Solutions", "LMS", "Product Websites"],
-    logo: "/logos/elix.avif",
+    tags: ["Software Engineering", "System Design", "Architecture"],
+    iconType: "layers",
     flip: false,
   },
 ];
+
+function getIcon(iconType?: string) {
+  switch (iconType) {
+    case "shield":
+      return <ShieldCheck className="w-3.5 h-3.5 text-blue-400" />;
+    case "code":
+      return <Code className="w-3.5 h-3.5 text-cyan-400" />;
+    case "award":
+      return <Award className="w-3.5 h-3.5 text-amber-400" />;
+    case "book":
+      return <BookOpen className="w-3.5 h-3.5 text-emerald-400" />;
+    case "layers":
+      return <Layers className="w-3.5 h-3.5 text-purple-400" />;
+    default:
+      return <GraduationCap className="w-3.5 h-3.5 text-neutral-300" />;
+  }
+}
 
 function TitleCard({ item }: { item: Milestone }) {
   return (
     <div className="w-full bg-[#0d0d0d]/95 hover:bg-[#151515] border border-white/[0.08] hover:border-white/[0.2] rounded-2xl p-6 sm:p-7 transition-all duration-300 shadow-[0_4px_28px_rgba(0,0,0,0.5)] group">
       {/* Badge Header */}
       <div className="flex items-center gap-2.5 mb-4">
-        {item.logo ? (
-          <div className="w-6 h-6 rounded-md overflow-hidden bg-neutral-900 border border-white/10 flex items-center justify-center p-0.5 shrink-0">
-            <img
-              src={item.logo}
-              alt={item.org}
-              className="w-full h-full object-contain"
-            />
-          </div>
-        ) : item.type === "edu" ? (
-          <div className="w-6 h-6 rounded-md bg-white/[0.06] border border-white/10 flex items-center justify-center text-neutral-300">
-            <GraduationCap className="w-3.5 h-3.5 text-neutral-300" />
-          </div>
-        ) : (
-          <div className="w-6 h-6 rounded-md bg-white/[0.06] border border-white/10 flex items-center justify-center text-neutral-300">
-            <Briefcase className="w-3.5 h-3.5 text-neutral-300" />
-          </div>
-        )}
+        <div className="w-6 h-6 rounded-md bg-white/[0.06] border border-white/10 flex items-center justify-center shrink-0">
+          {getIcon(item.iconType)}
+        </div>
         <span className="text-[11px] font-bold tracking-widest text-neutral-400 uppercase">
           {item.badgeLabel}
         </span>
@@ -130,7 +131,7 @@ function TitleCard({ item }: { item: Milestone }) {
       <h3 className="text-xl sm:text-2xl font-bold text-white mb-1 tracking-tight group-hover:text-neutral-100 transition-colors">
         {item.title}
       </h3>
-      <p className="text-sm font-medium text-neutral-400">{item.org}</p>
+      {item.org && <p className="text-sm font-medium text-neutral-400">{item.org}</p>}
     </div>
   );
 }
@@ -184,7 +185,6 @@ export default function ExperienceSection() {
     restDelta: 0.001,
   });
 
-  // Calculate moving glow orb position along the timeline
   const orbY = useTransform(smoothProgress, [0, 1], ["0%", "100%"]);
   const beamHeight = useTransform(smoothProgress, [0, 1], ["0%", "100%"]);
 
@@ -212,7 +212,7 @@ export default function ExperienceSection() {
                 MY JOURNEY
               </p>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">
-                Education &amp; Experience
+                Education &amp; Qualifications
               </h2>
             </div>
           </motion.div>
@@ -259,12 +259,11 @@ export default function ExperienceSection() {
                       {item.flip ? detailsComponent : cardComponent}
                     </div>
 
-                    {/* Center Column: Year Badge & Axis Anchor */}
+                    {/* Center Column: Year Badge next to center line */}
                     <div className="relative flex items-center justify-center h-full">
-                      {/* Year label positioned left or right of the center line */}
                       <span
                         className={`absolute text-xs font-bold tabular-nums text-neutral-500 whitespace-nowrap ${
-                          item.flip ? "right-7" : "left-7"
+                          item.flip ? "left-7 text-left" : "right-7 text-right"
                         }`}
                       >
                         {item.year}
