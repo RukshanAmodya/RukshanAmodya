@@ -5,6 +5,8 @@ import dynamic from "next/dynamic";
 
 const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
 
+import { assetUrl } from "@/lib/assets";
+
 interface LottiePlayerProps {
   src?: string;
   animationData?: any;
@@ -26,7 +28,8 @@ export default function LottiePlayer({
   useEffect(() => {
     setMounted(true);
     if (!directData && src) {
-      fetch(src)
+      const targetUrl = assetUrl(src);
+      fetch(targetUrl)
         .then((res) => res.json())
         .then((data) => setAnimationData(data))
         .catch((err) => console.error("Failed to load Lottie animation:", err));

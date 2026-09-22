@@ -4,6 +4,7 @@ import React from "react";
 import { ExternalLink, Github, Users, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 import LottiePlayer from "./LottiePlayer";
+import { assetUrl } from "@/lib/assets";
 
 interface Project {
   id: number;
@@ -177,7 +178,7 @@ export default function ProjectsSection() {
               {/* Graphic / Image Box */}
               <div className="relative aspect-square w-full rounded-xl overflow-hidden bg-neutral-950/80 mb-3.5 border border-white/[0.04]">
                 <img
-                  src={project.image}
+                  src={assetUrl(project.image)}
                   alt={project.title}
                   className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                 />

@@ -3,6 +3,7 @@
 import React from "react";
 import LottiePlayer from "./LottiePlayer";
 import { motion } from "framer-motion";
+import { assetUrl } from "@/lib/assets";
 
 export interface SkillItem {
   name: string;
@@ -47,7 +48,7 @@ export function SkillCard({ skill }: { skill: SkillItem }) {
       {/* Icon */}
       <div className="w-8 h-8 flex items-center justify-center">
         <img
-          src={skill.icon}
+          src={assetUrl(skill.icon)}
           alt={skill.name}
           className="w-7 h-7 object-contain filter group-hover:brightness-110 transition-all"
         />

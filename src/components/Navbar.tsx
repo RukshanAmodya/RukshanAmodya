@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
+import { assetUrl } from "@/lib/assets";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -57,9 +58,9 @@ export default function Navbar() {
           className="flex items-center gap-2 font-bold text-sm tracking-tight text-white hover:text-white/90 transition-colors shrink-0"
         >
           <img
-            src="/logo.webp"
-            alt="logo"
-            className="w-5 h-5 sm:w-6 sm:h-6 object-contain rounded-full"
+            src={assetUrl("/logo.webp")}
+            alt="Rukshan Amodya"
+            className="w-5 h-5 object-contain rounded-full border border-white/10"
           />
           <span className="text-xs sm:text-sm font-semibold tracking-tight">amodya.dev</span>
         </Link>

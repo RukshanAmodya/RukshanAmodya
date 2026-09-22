@@ -5,6 +5,7 @@ import { Mail, Globe, Laptop, Send, Github, Linkedin, Twitter, Flame, Activity, 
 import { motion } from "framer-motion";
 import Link from "next/link";
 import LottiePlayer from "./LottiePlayer";
+import { assetUrl } from "@/lib/assets";
 
 interface ContributionDay {
   date: string;
@@ -591,7 +592,7 @@ export default function ContactSection() {
             <div>
               <Link href="#home" className="inline-flex items-center gap-2 mb-2">
                 <img
-                  src="/logo.webp"
+                  src={assetUrl("/logo.webp")}
                   alt="Rukshan"
                   className="w-6 h-6 object-contain rounded-full"
                 />
