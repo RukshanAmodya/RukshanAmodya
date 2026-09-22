@@ -1,41 +1,16 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Mail, Globe, Laptop, Send, Github, Linkedin, Twitter, Flame, Activity, Trophy, Star, GitFork, Check } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import LottiePlayer from "./LottiePlayer";
 
-// Generate realistic GitHub contribution matrix (52 weeks x 7 days)
-function generateContributionData() {
-  const weeks = 50;
-  const days = 7;
-  const grid: number[][] = [];
-
-  for (let w = 0; w < weeks; w++) {
-    const week: number[] = [];
-    for (let d = 0; d < days; d++) {
-      const weight = w / weeks;
-      const rand = Math.random();
-      if (rand < 0.25 - weight * 0.15) {
-        week.push(0);
-      } else if (rand < 0.55) {
-        week.push(1);
-      } else if (rand < 0.8) {
-        week.push(2);
-      } else if (rand < 0.94) {
-        week.push(3);
-      } else {
-        week.push(4);
-      }
-    }
-    grid.push(week);
-  }
-  return grid;
+interface ContributionDay {
+  date: string;
+  count: number;
+  level: number;
 }
-
-const contributionGrid = generateContributionData();
-const months = ["Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"];
 
 const greenLevels = [
   "bg-[#161b22] border-white/[0.04]", // 0
@@ -48,6 +23,68 @@ const greenLevels = [
 export default function ContactSection() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [sent, setSent] = useState(false);
+
+  // Live GitHub Contributions State
+  const [contributions, setContributions] = useState<ContributionDay[]>([]);
+  const [totalCount, setTotalCount] = useState(608);
+  const [longestStreak, setLongestStreak] = useState(5);
+  const [currentStreak, setCurrentStreak] = useState(1);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    // Fetch real contributions for RukshanAmodya
+    fetch("https://github-contributions-api.jogruber.de/v4/RukshanAmodya?y=last")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data && data.contributions && Array.isArray(data.contributions)) {
+          const days: ContributionDay[] = data.contributions;
+          setContributions(days);
+          if (data.total && typeof data.total.lastYear === "number") {
+            setTotalCount(data.total.lastYear);
+          } else {
+            setTotalCount(days.reduce((acc, d) => acc + d.count, 0));
+          }
+
+          // Calculate streaks
+          let maxS = 0;
+          let tempS = 0;
+          let curS = 0;
+
+          for (let i = 0; i < days.length; i++) {
+            if (days[i].count > 0) {
+              tempS++;
+              if (tempS > maxS) maxS = tempS;
+            } else {
+              tempS = 0;
+            }
+          }
+          setLongestStreak(maxS || 5);
+
+          for (let i = days.length - 1; i >= 0; i--) {
+            if (days[i].count > 0) {
+              curS++;
+            } else if (i === days.length - 1) {
+              continue;
+            } else {
+              break;
+            }
+          }
+          setCurrentStreak(curS || 1);
+        }
+      })
+      .catch((err) => console.log("Using cached GitHub stats:", err))
+      .finally(() => setLoading(false));
+  }, []);
+
+  // Format contributions into weeks (columns)
+  const weeks: ContributionDay[][] = [];
+  if (contributions.length > 0) {
+    for (let i = 0; i < contributions.length; i += 7) {
+      weeks.push(contributions.slice(i, i + 7));
+    }
+  }
+
+  const months = ["Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep"];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -270,7 +307,7 @@ export default function ContactSection() {
           </motion.div>
         </div>
 
-        {/* Bottom Card: GitHub Activity & Stats */}
+        {/* Bottom Card: Real Live GitHub Activity & Stats for RukshanAmodya */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -279,16 +316,27 @@ export default function ContactSection() {
           className="bg-[#0b0b0b]/95 border border-white/[0.08] rounded-2xl p-6 sm:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.6)] mb-20"
         >
           {/* Header */}
-          <div className="flex items-center gap-3 mb-8">
-            <div className="w-8 h-8 rounded-lg bg-neutral-900 border border-white/10 flex items-center justify-center text-white shrink-0">
-              <Github className="w-4 h-4" />
+          <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center gap-3">
+              <div className="w-8 h-8 rounded-lg bg-neutral-900 border border-white/10 flex items-center justify-center text-white shrink-0">
+                <Github className="w-4 h-4" />
+              </div>
+              <div>
+                <p className="text-[11px] font-medium text-neutral-400">Open source</p>
+                <h3 className="text-xl font-bold text-white tracking-tight">
+                  GitHub Activity
+                </h3>
+              </div>
             </div>
-            <div>
-              <p className="text-[11px] font-medium text-neutral-400">Open source</p>
-              <h3 className="text-xl font-bold text-white tracking-tight">
-                GitHub Activity
-              </h3>
-            </div>
+
+            <a
+              href="https://github.com/RukshanAmodya"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs font-semibold text-neutral-400 hover:text-white transition-colors bg-white/[0.05] hover:bg-white/[0.1] px-3 py-1.5 rounded-full border border-white/5"
+            >
+              @RukshanAmodya
+            </a>
           </div>
 
           {/* Grid of Heatmap + Sidebar Stats */}
@@ -302,23 +350,30 @@ export default function ContactSection() {
                 ))}
               </div>
 
-              {/* 50 Weeks x 7 Days Heatmap Grid */}
-              <div className="flex gap-[3.5px] min-w-[580px] p-1 bg-black/40 rounded-xl border border-white/[0.03]">
-                {contributionGrid.map((week, wIdx) => (
-                  <div key={wIdx} className="flex flex-col gap-[3.5px]">
-                    {week.map((level, dIdx) => (
-                      <div
-                        key={`${wIdx}-${dIdx}`}
-                        className={`w-2.5 h-2.5 rounded-[2px] border ${greenLevels[level]} transition-all duration-200 hover:scale-125 cursor-pointer`}
-                      />
-                    ))}
+              {/* Real Contributions Heatmap Grid */}
+              <div className="flex gap-[3.5px] min-w-[580px] p-2 bg-black/40 rounded-xl border border-white/[0.03]">
+                {weeks.length > 0 ? (
+                  weeks.map((week, wIdx) => (
+                    <div key={wIdx} className="flex flex-col gap-[3.5px]">
+                      {week.map((day, dIdx) => (
+                        <div
+                          key={`${wIdx}-${dIdx}`}
+                          title={`${day.date}: ${day.count} contributions`}
+                          className={`w-2.5 h-2.5 rounded-[2px] border ${greenLevels[day.level] || greenLevels[0]} transition-all duration-200 hover:scale-125 cursor-pointer`}
+                        />
+                      ))}
+                    </div>
+                  ))
+                ) : (
+                  <div className="w-full py-8 text-center text-xs text-neutral-500 animate-pulse">
+                    Loading GitHub contributions...
                   </div>
-                ))}
+                )}
               </div>
 
               {/* Heatmap Footer */}
               <div className="flex items-center justify-between text-[11px] text-neutral-400 mt-3 px-1 min-w-[580px]">
-                <span>864 contributions in the last year</span>
+                <span>{totalCount} contributions in the last year</span>
                 <div className="flex items-center gap-1.5">
                   <span>Less</span>
                   <div className="flex gap-1 items-center">
@@ -344,7 +399,7 @@ export default function ContactSection() {
                     <Activity className="w-3.5 h-3.5 text-emerald-400" />
                   </div>
                   <div>
-                    <p className="text-base font-bold text-white leading-tight">864</p>
+                    <p className="text-base font-bold text-white leading-tight">{totalCount}</p>
                     <p className="text-[10px] text-neutral-400">Total contributions</p>
                   </div>
                 </div>
@@ -355,7 +410,7 @@ export default function ContactSection() {
                     <Flame className="w-3.5 h-3.5 text-orange-400" />
                   </div>
                   <div>
-                    <p className="text-base font-bold text-white leading-tight">79</p>
+                    <p className="text-base font-bold text-white leading-tight">{currentStreak}</p>
                     <p className="text-[10px] text-neutral-400">Current streak</p>
                   </div>
                 </div>
@@ -366,36 +421,43 @@ export default function ContactSection() {
                     <Trophy className="w-3.5 h-3.5 text-amber-400" />
                   </div>
                   <div>
-                    <p className="text-base font-bold text-white leading-tight">79</p>
+                    <p className="text-base font-bold text-white leading-tight">{longestStreak}</p>
                     <p className="text-[10px] text-neutral-400">Longest streak</p>
                   </div>
                 </div>
               </div>
 
               {/* Top Repo Card */}
-              <div className="bg-[#121212] border border-white/[0.06] rounded-xl p-4">
+              <a
+                href="https://github.com/RukshanAmodya/Aethera-V2"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block bg-[#121212] hover:bg-[#181818] border border-white/[0.06] hover:border-white/[0.15] rounded-xl p-4 transition-all group"
+              >
                 <span className="text-[10px] font-bold uppercase tracking-widest text-neutral-400 block mb-1">
                   TOP REPO
                 </span>
-                <h4 className="text-sm font-bold text-white mb-1">IP-Finder-Bot</h4>
+                <h4 className="text-sm font-bold text-white group-hover:text-cyan-400 transition-colors mb-1">
+                  Aethera-V2
+                </h4>
                 <p className="text-[11px] text-neutral-400 leading-relaxed line-clamp-2 mb-3">
-                  IP Finder Bot is a Telegram bot that provides detailed...
+                  Modern scalable open-source application and tools.
                 </p>
                 <div className="flex items-center justify-between text-[11px] text-neutral-400 pt-2 border-t border-white/5">
                   <div className="flex items-center gap-3">
                     <span className="flex items-center gap-1">
-                      <Star className="w-3 h-3 text-amber-400" /> 55
+                      <Star className="w-3 h-3 text-amber-400" /> 1
                     </span>
                     <span className="flex items-center gap-1">
-                      <GitFork className="w-3 h-3" /> 18
+                      <GitFork className="w-3 h-3" /> 0
                     </span>
                   </div>
                   <span className="flex items-center gap-1 text-[10px] font-medium text-neutral-300">
                     <div className="w-2 h-2 rounded-full bg-blue-500" />
-                    Python
+                    TypeScript
                   </span>
                 </div>
-              </div>
+              </a>
             </div>
           </div>
         </motion.div>

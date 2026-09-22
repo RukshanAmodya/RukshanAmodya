@@ -37,11 +37,10 @@ export default function HeroGrid() {
       for (let c = minC; c <= maxC; c++) {
         const dist = Math.sqrt(Math.pow(r - clickRow, 2) + Math.pow(c - clickCol, 2));
         if (dist <= maxRadius) {
-          const intensity = Math.pow((maxRadius - dist) / maxRadius, 1.3);
-          if (intensity <= 0.04) continue;
+          const intensity = Math.pow((maxRadius - dist) / maxRadius, 1.25);
+          if (intensity <= 0.03) continue;
 
-          // Slightly longer, more graceful wave propagation delay
-          const delay = dist * 62;
+          const delay = dist * 58;
           const key = `${r}-${c}`;
 
           const timer = setTimeout(() => {
@@ -50,14 +49,14 @@ export default function HeroGrid() {
               [key]: intensity,
             }));
 
-            // Longer fadeout linger time so the animation lasts gracefully
+            // Smooth fadeout duration
             const fadeTimer = setTimeout(() => {
               setActiveCells((prev) => {
                 const next = { ...prev };
                 delete next[key];
                 return next;
               });
-            }, 900);
+            }, 850);
 
             if (timerRefs.current[rippleId]) {
               timerRefs.current[rippleId].push(fadeTimer);
@@ -82,7 +81,7 @@ export default function HeroGrid() {
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-auto select-none bg-black">
-      {/* Grid container with larger square boxes */}
+      {/* Grid container with delicate, clearly visible square boxes */}
       <div
         className="grid w-full h-full"
         style={{
@@ -101,18 +100,18 @@ export default function HeroGrid() {
               <div
                 key={key}
                 onClick={() => triggerRingRipple(r, c)}
-                className="border border-white/[0.04] transition-all duration-700 ease-out cursor-pointer hover:bg-white/[0.05] hover:border-white/[0.14]"
+                className="border border-white/[0.045] transition-all duration-700 ease-out cursor-pointer hover:bg-white/[0.06] hover:border-white/[0.16]"
                 style={{
                   width: `${gridSize.cellSize}px`,
                   height: `${gridSize.cellSize}px`,
                   backgroundColor: isLit
-                    ? `rgba(255, 255, 255, ${0.025 + intensity * 0.055})`
+                    ? `rgba(255, 255, 255, ${0.035 + intensity * 0.065})`
                     : undefined,
                   borderColor: isLit
-                    ? `rgba(255, 255, 255, ${0.05 + intensity * 0.1})`
+                    ? `rgba(255, 255, 255, ${0.07 + intensity * 0.14})`
                     : undefined,
                   boxShadow: isLit
-                    ? `0 0 14px rgba(255, 255, 255, ${intensity * 0.05})`
+                    ? `0 0 16px rgba(255, 255, 255, ${intensity * 0.06})`
                     : undefined,
                 }}
               />
